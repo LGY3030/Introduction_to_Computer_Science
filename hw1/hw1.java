@@ -1,9 +1,7 @@
-package hw1;
-
 import java.util.Scanner;
 
 public class hw1 {
-	public void main (String args) {
+	public static void main (String[] args) {
 		Scanner scanner=new Scanner(System.in);
 		int a,b;
 		double a1=0;
@@ -68,6 +66,18 @@ public class hw1 {
 				break;
 			}
 		}
-		
+		bAll/=2;
+		if(b1>bAll&&b1Count>5) {
+			System.out.println("1號候選人當選");
+		}
+		else if(b2>bAll&&b2Count>5) {
+			System.out.println("2號候選人當選");
+		}
+		else if(b3>bAll&&b3Count>5) {
+			System.out.println("3號候選人當選");
+		}
+		else {
+			System.out.println("無人當選");
+		}
 	}
 }
