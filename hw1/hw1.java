@@ -37,7 +37,8 @@ public class hw1 {
 					break;
 				default:
 					break;
-			}	
+			}
+			System.out.println("請根據選票上的候選人輸入候選人編號:");
 			b=scanner.nextInt();
 			while(b<1||b>3) {
 				System.out.println("輸入錯誤，請重新輸入");
@@ -61,6 +62,7 @@ public class hw1 {
 			}
 			bAll+=a1;
 			bAllCount++;
+			System.out.println("是否繼續輸入（Y or N）:");
 			c=scanner.next().charAt(0);
 			if(c=='N'||c=='n') {
 				break;
