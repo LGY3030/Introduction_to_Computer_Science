@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class hw1 {
 
+	//宣告
+	static int b1get=0,b2get=0,b3get=0; //為各候選人賄賂的flag,賄賂最多的flag變為1
+
 	public static void main (String[] args) {
 
 		Scanner scanner=new Scanner(System.in);        //new一個scanner來輸入資料
@@ -17,7 +20,7 @@ public class hw1 {
 		System.out.println("歡迎使用選票計算系統");
 		System.out.println("=================");
 
-		//輸入資訊
+		//輸入投票資訊
 		while(true) {        //不斷進行while迴圈,直到輸入c為N
 
 			System.out.println("請根據選票上的學生年級輸入年級編號:");
@@ -92,35 +95,182 @@ public class hw1 {
 			if(c=='N'||c=='n') {        //判斷c是否為N或n,如果是,則跳出while迴圈
 				break;
 			}
+			else if(c=='B'||c=='b'){        //判斷c是否為B或b,如果是,則進入賄賂系統,最後跳出while迴圈
+				bribe();
+				break;
+			}
 		}
 
 
 		bAll/=2;        //將總加權票值除以2,因為當選條件要大於一半加權後的總票值以上
 
-		//判斷是否當選
-		if(b1>bAll&&b1Count>=5) {
+
+		/*判斷是否當選
+		  1.若僅有一人賄賂最多,則為那人當選
+		  2.若有兩人賄賂最多,則那兩人比較加權票值,加權票值較高者當選,若加權票值一樣,則比較投票人數,投票人數較高者當選
+		  3.若三人賄賂一樣多或三人都未賄賂,則依照原本當選標準判別
+		*/
+		
+		//僅有一人賄賂最多
+		if(b1get==1&&b2get==0&&b3get==0){
 			System.out.print("\n");
 			System.out.println("=================");
 			System.out.println("1號候選人當選");
 			System.out.print("\n");
 			pattern();       //印出圖案
 		}
-		else if(b2>bAll&&b2Count>=5) {
+
+		else if(b1get==0&&b2get==1&&b3get==0){
 			System.out.print("\n");
 			System.out.println("=================");
 			System.out.println("2號候選人當選");
 			System.out.print("\n");
-			pattern();        //印出圖案
+			pattern();       //印出圖案
 		}
-		else if(b3>bAll&&b3Count>=5) {
+
+		else if(b1get==0&&b2get==0&&b3get==1){
 			System.out.print("\n");
 			System.out.println("=================");
 			System.out.println("3號候選人當選");
 			System.out.print("\n");
-			pattern();        //印出圖案
+			pattern();       //印出圖案
 		}
-		else {
-			System.out.println("無人當選");
+
+		//有兩人賄賂最多
+		else if(b1get==1&&b2get==1&&b3get==0){
+			if(b1>b2){
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("1號候選人當選");
+				System.out.print("\n");
+				pattern();       //印出圖案
+			}
+			else if(b2>b1){
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("2號候選人當選");
+				System.out.print("\n");
+				pattern();       //印出圖案
+			}
+			else{
+				if(b1Count>b2Count){
+					System.out.print("\n");
+					System.out.println("=================");
+					System.out.println("1號候選人當選");
+					System.out.print("\n");
+					pattern();       //印出圖案
+				}
+				else if(b2Count>b1Count){
+					System.out.print("\n");
+					System.out.println("=================");
+					System.out.println("2號候選人當選");
+					System.out.print("\n");
+					pattern();       //印出圖案
+				}
+				else{
+					System.out.println("無人當選");
+				}
+			}
+		}
+
+		else if(b1get==1&&b2get==0&&b3get==1){
+			if(b1>b3){
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("1號候選人當選");
+				System.out.print("\n");
+				pattern();       //印出圖案
+			}
+			else if(b3>b1){
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("3號候選人當選");
+				System.out.print("\n");
+				pattern();       //印出圖案
+			}
+			else{
+				if(b1Count>b3Count){
+					System.out.print("\n");
+					System.out.println("=================");
+					System.out.println("1號候選人當選");
+					System.out.print("\n");
+					pattern();       //印出圖案
+				}
+				else if(b3Count>b1Count){
+					System.out.print("\n");
+					System.out.println("=================");
+					System.out.println("3號候選人當選");
+					System.out.print("\n");
+					pattern();       //印出圖案
+				}
+				else{
+					System.out.println("無人當選");
+				}
+			}
+		}
+
+		else if(b1get==0&&b2get==1&&b3get==1){
+			if(b2>b3){
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("2號候選人當選");
+				System.out.print("\n");
+				pattern();       //印出圖案
+			}
+			else if(b3>b2){
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("3號候選人當選");
+				System.out.print("\n");
+				pattern();       //印出圖案
+			}
+			else{
+				if(b2Count>b3Count){
+					System.out.print("\n");
+					System.out.println("=================");
+					System.out.println("2號候選人當選");
+					System.out.print("\n");
+					pattern();       //印出圖案
+				}
+				else if(b3Count>b2Count){
+					System.out.print("\n");
+					System.out.println("=================");
+					System.out.println("3號候選人當選");
+					System.out.print("\n");
+					pattern();       //印出圖案
+				}
+				else{
+					System.out.println("無人當選");
+				}
+			}
+		}
+
+		//三人賄賂一樣多或三人都未賄賂
+		else if((b1get==1&&b2get==1&&b3get==1)||(b1get==0&&b2get==0&&b3get==0)){
+			if(b1>bAll&&b1Count>=5) {
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("1號候選人當選");
+				System.out.print("\n");
+				pattern();       //印出圖案
+			}
+			else if(b2>bAll&&b2Count>=5) {
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("2號候選人當選");
+				System.out.print("\n");
+				pattern();        //印出圖案
+			}
+			else if(b3>bAll&&b3Count>=5) {
+				System.out.print("\n");
+				System.out.println("=================");
+				System.out.println("3號候選人當選");
+				System.out.print("\n");
+				pattern();        //印出圖案
+			}
+			else {
+				System.out.println("無人當選");
+			}
 		}
 	}
 
@@ -167,8 +317,75 @@ public class hw1 {
 
 			}
 
-		System.out.print("\n");
+			//最後一行輸出後不要換行,節省空間而已
+			if(x==20){
+				;
+			}
+			else{
+				System.out.print("\n");
+			}
+		}
+	}
+
+
+	//賄賂系統
+	static void bribe(){
+
+		Scanner scanner=new Scanner(System.in);        //new一個scanner來輸入資料
+
+		//宣告
+		int b1=0,b2=0,b3=0;        //b1,b2,b3為各候選人的賄賂金額
+		int a;        //a為輸入的賄賂金額
+		int b;        //根據b的號碼,將a的值加入b1 or b2 or b3
+		int c;        //c為判斷是否繼續輸入資料(Y or N)
+
+		//輸入賄賂資訊
+		while(true){        //不斷進行while迴圈,直到輸入c為N
+
+			System.out.println("輸入賄賂金額:");
+			a=scanner.nextInt();        //a為下個輸入的int
+
+
+			System.out.println("輸入賄賂的候選人:");
+			b=scanner.nextInt();        //b為下個輸入的int
+
+
+			switch(b){        //根據輸入的1<=b<=3,將a加進各自候選人的賄賂金額內
+				case 1:
+					b1+=a;
+					break;
+				case 2:
+					b2+=a;
+					break;
+				case 3:
+					b3+=a;
+					break;
+				default:
+					break;
+			}
+
+
+			System.out.println("是否繼續輸入（Y or N）:");
+			c=scanner.next().charAt(0);        //讀取c的字元
+
+
+			if(c=='N'||c=='n') {        //判斷c是否為N或n,如果是,則跳出while迴圈
+				break;
+			}
 
 		}
+
+		
+		//判斷賄賂金額大小
+		if(b1>=b2&&b1>=b3){
+			b1get=1;
+		}
+		else if(b2>=b1&&b2>=b3){
+			b2get=1;
+		}
+		else if(b3>=b1&&b3>=b2){
+			b3get=1;
+		}
+		
 	}
 }
