@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class hw1 {
+
 	public static void main (String[] args) {
 
 		Scanner scanner=new Scanner(System.in);        //new一個scanner來輸入資料
@@ -98,16 +99,76 @@ public class hw1 {
 
 		//判斷是否當選
 		if(b1>bAll&&b1Count>=5) {
+			System.out.print("\n");
+			System.out.println("=================");
 			System.out.println("1號候選人當選");
+			System.out.print("\n");
+			pattern();       //印出圖案
 		}
 		else if(b2>bAll&&b2Count>=5) {
+			System.out.print("\n");
+			System.out.println("=================");
 			System.out.println("2號候選人當選");
+			System.out.print("\n");
+			pattern();        //印出圖案
 		}
 		else if(b3>bAll&&b3Count>=5) {
+			System.out.print("\n");
+			System.out.println("=================");
 			System.out.println("3號候選人當選");
+			System.out.print("\n");
+			pattern();        //印出圖案
 		}
 		else {
 			System.out.println("無人當選");
+		}
+	}
+
+
+	//印出圖案的function
+	static void pattern(){
+		
+		//宣告
+		int x,y;
+
+		//印出一個大的矩形
+		for(x=1;x<=20;x++) {
+			for(y=1;y<=46;y++){
+
+				//判斷在哪些地方要挖空
+				if(x==4||x==6){
+					if((8<=y&&y<=12)||(35<=y&&y<=39)){
+						System.out.print(" ");
+					}
+					else{
+						System.out.print("*");
+					}
+				}
+				else if(x==5){
+					if((8<=y&&y<=12&&y!=10)||(35<=y&&y<=39&&y!=37)){
+						System.out.print(" ");
+					}
+					else{
+						System.out.print("*");
+					}
+				}
+				else if(13<=x&&x<=18){
+					if((2*x-13)<=y&&y<(2*(24-(2*x-13))+(2*x-13))){
+						System.out.print(" ");	
+					}
+					else{
+						System.out.print("*");
+					}
+				}
+				else{
+					System.out.print("*");
+				}
+
+
+			}
+
+		System.out.print("\n");
+
 		}
 	}
 }
