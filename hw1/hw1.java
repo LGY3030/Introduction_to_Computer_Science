@@ -350,6 +350,11 @@ public class hw1 {
 			b=scanner.nextInt();        //b為下個輸入的int
 
 
+			while(b<1||b>3) {        //不斷進行while迴圈,直到1<=b<=3
+				System.out.println("輸入錯誤，請重新輸入");
+				b=scanner.nextInt();
+			}
+
 			switch(b){        //根據輸入的1<=b<=3,將a加進各自候選人的賄賂金額內
 				case 1:
 					b1+=a;
