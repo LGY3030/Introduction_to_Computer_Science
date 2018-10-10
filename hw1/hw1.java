@@ -90,7 +90,7 @@ public class hw1 {
 
 			System.out.println("是否繼續輸入（Y or N）:");
 			c=scanner.next().charAt(0);        //讀取c的字元
-
+			System.out.println("");
 
 			if(c=='N'||c=='n') {        //判斷c是否為N或n,如果是,則跳出while迴圈
 				break;
