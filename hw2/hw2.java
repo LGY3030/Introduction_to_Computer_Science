@@ -1,4 +1,4 @@
-ï»¿import java.util.Scanner;
+import java.util.Scanner;
 
 public class hw2 {
 	public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class hw2 {
 		while(true) {
 			if(switchflag==0) {
 				while(true) {
-					System.out.println("                                 2018å¹´10æœˆ");
+					System.out.println("                                 2018¦~10¤ë");
 					System.out.println("Sun.        Mon.        Tue.        Wed.        Thu.        Fri.        Sat.");
 					for(int i=0;i<=31;i++) {
 						if(i==0) {
@@ -49,7 +49,7 @@ public class hw2 {
 						}
 					}
 					System.out.println("");
-					System.out.println("è¼¸å…¥æŒ‡ä»¤");
+					System.out.println("¿é¤J«ü¥O");
 					a=scanner.nextLine();
 					if(a=="exit") {
 						endflag=1;
@@ -67,8 +67,8 @@ public class hw2 {
 		
 			if(switchflag==1) {
 				while(true) {
-					System.out.printf("        2018 å¹´ 10 æœˆ %dæ—¥\n",day);
-					System.out.println("æ´»å‹•:");
+					System.out.printf("        2018 ¦~ 10 ¤ë %d¤é\n",day);
+					System.out.println("¬¡°Ê:");
 					if(eventflag[day]==1 && Integer.parseInt(event[day][21][0])>0) {
 						for(int i=1;i<=Integer.parseInt(event[day][21][0]);i++) {
 							System.out.printf("%d.",i);
@@ -76,14 +76,14 @@ public class hw2 {
 						}
 					}
 					System.out.println("");
-					System.out.println("è¼¸å…¥æŒ‡ä»¤:");
+					System.out.println("¿é¤J«ü¥O:");
 					a=scanner.nextLine();
-					if(a.subSequence(0,3)=="add") {
+					if(a.substring(0,3).equals("add")) {
 						for(int i=1;i<=Integer.parseInt(event[day][21][0]);i++) {
 							checkeventa=60*Integer.parseInt(a.substring(4,6))+Integer.parseInt(a.substring(7,9));
 							checkeventb=60*Integer.parseInt(a.substring(10,12))+Integer.parseInt(a.substring(13,15));
 							if((checkeventa>=Integer.parseInt(event[day][i][1])&&checkeventa<=Integer.parseInt(event[day][i][2]))||(checkeventb>=Integer.parseInt(event[day][i][1])&&checkeventb<=Integer.parseInt(event[day][i][2]))||(checkeventa<=Integer.parseInt(event[day][i][1])&&checkeventb>=Integer.parseInt(event[day][i][2]))) {
-								System.out.println("è©²æ™‚é–“å€æ®µå·²æœ‰æ´»å‹•");
+								System.out.println("¸Ó®É¶¡°Ï¬q¤w¦³¬¡°Ê");
 								break;
 							}
 							else {
@@ -96,6 +96,9 @@ public class hw2 {
 							}
 						}
 					}
+else{
+System.out.println("hi");
+}
 				}
 			}
 		}
