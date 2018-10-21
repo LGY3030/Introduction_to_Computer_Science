@@ -120,7 +120,21 @@ public class hw2 {
 					switchflag=0;
 				}
 				else if(a.substring(0,3).equals("del")) {
-					
+					event[day][Integer.parseInt(a.substring(4,5))][0]="";
+					event[day][Integer.parseInt(a.substring(4,5))][1]="";
+					event[day][Integer.parseInt(a.substring(4,5))][2]="";
+					for(int i=Integer.parseInt(a.substring(4,5));i<=Integer.parseInt(event[day][21][0]);i++){
+						event[day][i][0]=event[day][i+1][0];
+						event[day][i][1]=event[day][i+1][1];
+						event[day][i][2]=event[day][i+1][2];
+					}
+					event[day][Integer.parseInt(event[day][21][0])][0]="";
+					event[day][Integer.parseInt(event[day][21][0])][1]="";
+					event[day][Integer.parseInt(event[day][21][0])][2]="";
+					event[day][21][0]=String.valueOf(Integer.parseInt(event[day][21][0])-1);
+					if(Integer.parseInt(event[day][21][0])==0){
+						eventflag[day]=0;
+					}
 				}
 				else if(a.substring(0,3).equals("add")) {
 					if(Integer.parseInt(event[day][21][0])==0){
