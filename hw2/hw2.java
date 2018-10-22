@@ -71,7 +71,26 @@ public class hw2 {
 				if(a.equals("exit")) {
 					break;
 				}
-				else {
+				else if(a.equals("show")){	
+					System.out.println("");
+					System.out.print("============================================================================");
+					System.out.println("");
+					System.out.println("");
+					for(int i=1;i<=31;i++){
+						if(eventflag[i]==1){
+							System.out.printf("        2018 年 10 月 %d日\n",i);
+							System.out.println("");
+							System.out.println("活動:");
+							for(int j=1;j<=Integer.parseInt(event[i][21][0]);j++){
+								System.out.printf("%d.",j);
+								System.out.println(event[i][j][0]);
+							}	
+						System.out.println("");
+						System.out.println("");
+						}
+					}
+				}
+				else{
 					montha=Integer.parseInt(a.substring(4,6));
 					monthb=Integer.parseInt(a.substring(7,9));
 					switchflag=1;
