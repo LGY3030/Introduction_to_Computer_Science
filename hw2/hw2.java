@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class hw2 {
 	public static void main(String[] args) {
 		int switchflag=0;
+		int activitycheck=0;
 		int endflag=0;
 		int montha=0,monthb=0;
 		int day=0;
@@ -119,6 +120,30 @@ public class hw2 {
 				else if(a.equals("month")) {
 					switchflag=0;
 				}
+				else if(a.substring(0,4).equals("edit")) {
+					for(int i=1;i<=Integer.parseInt(event[day][21][0]);i++) {
+						checkeventa=60*Integer.parseInt(a.substring(7,9))+Integer.parseInt(a.substring(10,12));
+						checkeventb=60*Integer.parseInt(a.substring(13,15))+Integer.parseInt(a.substring(16,18));
+						if(checkeventa>=Integer.parseInt(event[day][i][1])&&checkeventa<=Integer.parseInt(event[day][i][2])) {
+							activitycheck=activitycheck+1;
+						}
+						else if(checkeventb>=Integer.parseInt(event[day][i][1])&&checkeventb<=Integer.parseInt(event[day][i][2])){
+							activitycheck=activitycheck+1;
+						}
+						else if(checkeventa<=Integer.parseInt(event[day][i][1])&&checkeventb>=Integer.parseInt(event[day][i][2])){
+							activitycheck=activitycheck+1;
+						}
+					}
+						if(activitycheck>0){
+							System.out.println("該時間區段已有活動");
+						}
+						else{
+							event[day][Integer.parseInt(a.substring(5,6))][0]=a.substring(7,9)+":"+a.substring(10,12)+"~"+a.substring(13,15)+":"+a.substring(16,18)+" "+event[day][Integer.parseInt(a.substring(5,6))][0].substring(12);
+							event[day][Integer.parseInt(a.substring(5,6))][1]=String.valueOf(checkeventa);
+							event[day][Integer.parseInt(a.substring(5,6))][2]=String.valueOf(checkeventb);
+						}
+						activitycheck=0;
+				}
 				else if(a.substring(0,3).equals("del")) {
 					if(a.substring(4,5).equals("a")) {
 						for(int i=1;i<=Integer.parseInt(event[day][21][0]);i++){
@@ -161,26 +186,27 @@ public class hw2 {
 							checkeventa=60*Integer.parseInt(a.substring(4,6))+Integer.parseInt(a.substring(7,9));
 							checkeventb=60*Integer.parseInt(a.substring(10,12))+Integer.parseInt(a.substring(13,15));
 							if(checkeventa>=Integer.parseInt(event[day][i][1])&&checkeventa<=Integer.parseInt(event[day][i][2])) {
-								System.out.println("該時間區段已有活動");
-								break;
+								activitycheck=activitycheck+1;
 							}
 							else if(checkeventb>=Integer.parseInt(event[day][i][1])&&checkeventb<=Integer.parseInt(event[day][i][2])){
-								System.out.println("該時間區段已有活動");
-								break;
+								activitycheck=activitycheck+1;
 							}
 							else if(checkeventa<=Integer.parseInt(event[day][i][1])&&checkeventb>=Integer.parseInt(event[day][i][2])){
-								System.out.println("該時間區段已有活動");
-								break;
-							}
-							else {
-								event[day][21][0]=String.valueOf(Integer.parseInt(event[day][21][0])+1);
-								eventflag[day]=1;
-								event[day][Integer.parseInt(event[day][21][0])][0]=a.substring(4,15)+" "+a.substring(16);
-								event[day][Integer.parseInt(event[day][21][0])][1]=String.valueOf(checkeventa);
-								event[day][Integer.parseInt(event[day][21][0])][2]=String.valueOf(checkeventb);
-								break;
+								activitycheck=activitycheck+1;
 							}
 						}
+						if(activitycheck>0){
+							System.out.println("該時間區段已有活動");
+						}
+						else{
+							event[day][21][0]=String.valueOf(Integer.parseInt(event[day][21][0])+1);
+							eventflag[day]=1;
+							event[day][Integer.parseInt(event[day][21][0])][0]=a.substring(4,15)+" "+a.substring(16);
+							event[day][Integer.parseInt(event[day][21][0])][1]=String.valueOf(checkeventa);
+							event[day][Integer.parseInt(event[day][21][0])][2]=String.valueOf(checkeventb);
+						}
+						activitycheck=0;
+
 					}
 					
 				}
