@@ -2,21 +2,29 @@ import java.util.Scanner;
 
 public class hw2 {
 	public static void main(String[] args) {
-		int switchflag=0;
-		int activitycheck=0;
-		int endflag=0;
-		int montha=0,monthb=0;
-		int day=0;
-		int temp1=0,temp2=0;
-		String temp3="";
-		int checkeventa=0,checkeventb=0;
-		String a="";
-		int[] eventflag = new int[32];
-		String[][][] event = new String[32][22][3];
-		Scanner scanner=new Scanner(System.in);
+
+		Scanner scanner=new Scanner(System.in);        //new一個scanner來輸入資料
+		String a="";        //用來接收輸入的資料
+
+
+		int switchflag=0;        //判斷是月行事曆還是日行事曆(0為月行事曆，1為日行事曆)
+		int activitycheck=0;        //判斷輸入新的activity時，有沒有時間衝突
+		int montha=0,monthb=0;        //用來記錄從月行事曆轉換到日行事曆時，輸入的月和日
+		int day=0;        //day=monthb，用來記錄當前所編輯的日
+		int checkeventa=0,checkeventb=0;        //紀錄activity的時間(checkeventa是開始時間，checkeventb是結束時間)
+		int temp1=0,temp2=0;        //在重新排序activity時，暫存的變數
+		String temp3="";        //在重新排序activity時，暫存的變數
+
+		int[] eventflag = new int[32];        //new一個array，用來判斷31天每日是否有活動(0為沒活動，1為有活動)
+		String[][][] event = new String[32][22][3];        //new一個array，儲存31天每日的activity、activity數量和activity開始到結束的時間
+		
+
+		//array初始化
 		for(int i=0;i<=31;i++) {
 			eventflag[i]=0;
 		}
+
+		//array初始化
 		for(int i=0;i<=31;i++){
 			for(int j=0;j<=21;j++){
 				for(int k=0;k<=2;k++){
@@ -29,8 +37,14 @@ public class hw2 {
 				}
 			}
 		}
+
+		
+		//程式會一直在這裡面執行，直到在月行事曆或日行事曆中輸入"exit"
 		while(true) {
+
+			//月行事曆(switchflag為0)
 			if(switchflag==0) {
+
 				System.out.println("");
 				System.out.println("                                 2018年10月");
 				System.out.println("");
@@ -100,6 +114,8 @@ public class hw2 {
 				System.out.print("============================================================================");
 			}			
 		
+
+			//日行事曆(switchflag為1)
 			if(switchflag==1) {
 				System.out.println("");
 				System.out.println("");
