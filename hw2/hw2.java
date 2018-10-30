@@ -188,7 +188,7 @@ public class hw2 {
 				else if(a.substring(0,4).equals("edit")) {        //若輸入edit-[活動編號]-[活動時間]，則編輯現有activity
 
 					//指令時間與現實時間不符合
-					if(Integer.parseInt(a.substring(7,9))<0||Integer.parseInt(a.substring(7,9))>23||Integer.parseInt(a.substring(13,15))<0||Integer.parseInt(a.substring(13,15))>23||Integer.parseInt(a.substring(10,12))<0||Integer.parseInt(a.substring(10,12))>59||Integer.parseInt(a.substring(16,18))<0||Integer.parseInt(a.substring(16,18))>59){
+					if(Integer.parseInt(a.substring(7,9))<0||Integer.parseInt(a.substring(7,9))>23||Integer.parseInt(a.substring(13,15))<0||Integer.parseInt(a.substring(13,15))>23||Integer.parseInt(a.substring(10,12))<0||Integer.parseInt(a.substring(10,12))>59||Integer.parseInt(a.substring(16,18))<0||Integer.parseInt(a.substring(16,18))>59||(60*Integer.parseInt(a.substring(7,9))+Integer.parseInt(a.substring(10,12)))>(60*Integer.parseInt(a.substring(13,15))+Integer.parseInt(a.substring(16,18)))){
 						System.out.println("指令時間與現實不符");
 					}
 					
@@ -261,7 +261,7 @@ public class hw2 {
 				else if(a.substring(0,3).equals("add")) {        //若輸入add-[活動時間]-[活動名稱]，則增加新的activity
 
 					//指令時間與現實時間不符合
-					if(Integer.parseInt(a.substring(4,6))<0||Integer.parseInt(a.substring(4,6))>23||Integer.parseInt(a.substring(10,12))<0||Integer.parseInt(a.substring(10,12))>23||Integer.parseInt(a.substring(7,9))<0||Integer.parseInt(a.substring(7,9))>59||Integer.parseInt(a.substring(13,15))<0||Integer.parseInt(a.substring(13,15))>59){
+					if(Integer.parseInt(a.substring(4,6))<0||Integer.parseInt(a.substring(4,6))>23||Integer.parseInt(a.substring(10,12))<0||Integer.parseInt(a.substring(10,12))>23||Integer.parseInt(a.substring(7,9))<0||Integer.parseInt(a.substring(7,9))>59||Integer.parseInt(a.substring(13,15))<0||Integer.parseInt(a.substring(13,15))>59||(60*Integer.parseInt(a.substring(4,6))+Integer.parseInt(a.substring(7,9)))>(60*Integer.parseInt(a.substring(10,12))+Integer.parseInt(a.substring(13,15)))){
 						System.out.println("指令時間與現實不符");
 					}
 
