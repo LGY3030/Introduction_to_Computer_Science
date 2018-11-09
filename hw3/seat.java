@@ -23,5 +23,25 @@ public class seat {
 			System.out.println("ºî¦XªG¥Ä");
 		}
 	}
-	
+	public void addtime(int i){
+		switch (i) {
+			case 1:
+				time.add(10);
+				break;
+			case 2:
+				time.add(8);
+				break;
+			case 3:
+				time.add(2);
+				break;
+			case 4:
+				time.add(5);
+				break;
+			case 5:
+				time.add(3);
+				break;
+			default:
+				break;
+		}
+	}
 }

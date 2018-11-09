@@ -13,6 +13,7 @@ public class hw3 {
 		String get="";
 		int mode=0;
 		int order=0;
+		int nexttime=0;
 		
 		while(true) {
 			
@@ -149,6 +150,9 @@ public class hw3 {
 							}
 						}
 					}
+					else if(get.substring(0,3).equals("nex")){
+						nexttime=Integer.parseInt(get.substring(5,6));
+					}
 					else {
 						System.out.println("¼p®v1");
 						if(chef1.meal.size()==0) {
@@ -203,48 +207,36 @@ public class hw3 {
 					if(Integer.parseInt(get.substring(8,9))==1) {
 						chef1.meal.add(Integer.parseInt(get.substring(5,6)));
 						chef1.seat.add(order);
-						switch (Integer.parseInt(get.substring(5,6))) {
-							case 1:
-								chef1.time.add(6);
-								break;
-							case 2:
-								chef1.time.add(4);
-								break;
-							case 3:
-								chef1.time.add(2);
-								break;
-							case 4:
-								chef1.time.add(8);
-								break;
-							case 5:
-								chef1.time.add(2);
-								break;
-							default:
-								break;
-						}
+						chef1.addtime(Integer.parseInt(get.substring(5,6)));
 					}
 					else {
 						chef2.meal.add(Integer.parseInt(get.substring(5,6)));
 						chef2.seat.add(order);
-						switch (Integer.parseInt(get.substring(5,6))) {
-							case 1:
-								chef2.time.add(6);
-								break;
-							case 2:
-								chef2.time.add(4);
-								break;
-							case 3:
-								chef2.time.add(2);
-								break;
-							case 4:
-								chef2.time.add(8);
-								break;
-							case 5:
-								chef2.time.add(2);
-								break;
-							default:
-								break;
-						}
+						chef2.addtime(Integer.parseInt(get.substring(5,6)));
+					}
+					switch(order){
+						case 1:
+							seat1.meal.add(Integer.parseInt(get.substring(5,6)));
+							seat1.done.add(0);
+							seat1.addtime(Integer.parseInt(get.substring(5,6)));
+							break;
+						case 2:
+							seat2.meal.add(Integer.parseInt(get.substring(5,6)));
+							seat2.done.add(0);
+							seat2.addtime(Integer.parseInt(get.substring(5,6)));
+							break;
+						case 3:
+							seat3.meal.add(Integer.parseInt(get.substring(5,6)));
+							seat3.done.add(0);
+							seat3.addtime(Integer.parseInt(get.substring(5,6)));
+							break;
+						case 4:
+							seat4.meal.add(Integer.parseInt(get.substring(5,6)));
+							seat4.done.add(0);
+							seat4.addtime(Integer.parseInt(get.substring(5,6)));
+							break;
+						default:
+							break;
 					}
 				}
 			}
