@@ -5,6 +5,7 @@ public class chef {
 	public ArrayList <Integer> meal = new ArrayList();
 	public ArrayList <Integer> seat = new ArrayList();
 	public ArrayList <Integer> time = new ArrayList();
+	public ArrayList <Integer> oktime = new ArrayList();
 	public void printmeal(int i){
 		if(meal.get(i)==1){
 			System.out.println("ª£¶º");

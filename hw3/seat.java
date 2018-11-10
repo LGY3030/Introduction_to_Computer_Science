@@ -5,6 +5,7 @@ public class seat {
 	public int flag=0;
 	public ArrayList <Integer> meal = new ArrayList();
 	public ArrayList <Integer> done = new ArrayList();
+	public ArrayList <Integer> eat = new ArrayList();
 	public ArrayList <Integer> time = new ArrayList();
 	public void printmeal(int i){
 		if(meal.get(i)==1){
