@@ -13,10 +13,9 @@ public class hw3 {
 	static int nexttime=0;
 	static int delete=0;
 	static int ready=0;
-	static int totaltime=0;
 	public static void main(String[] args) {
 		
-
+		int totaltime=0;
 		Scanner scanner=new Scanner(System.in);
 
 		
@@ -212,7 +211,13 @@ public class hw3 {
 					check(2,seat2);
 					check(3,seat3);
 					check(4,seat4);
-					totaltime+=Integer.parseInt(get.substring(5,6));
+					for(int i=0;i<seat3.meal.size();i++){
+System.out.println(seat3.eat.get(i));
+}
+				for(int i=0;i<seat3.meal.size();i++){
+System.out.println(seat3.done.get(i));
+}
+					totaltime+=Integer.parseInt(get.substring(5));
 				}	
 				else {
 					break;

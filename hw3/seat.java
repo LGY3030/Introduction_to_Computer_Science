@@ -73,18 +73,23 @@ public class seat {
 				if(totaltime>=seatnow.oktime.get(noweatmeal)) {
 					if(time>=seatnow.time.get(noweatmeal)) {
 						time=time-seatnow.time.get(noweatmeal);
+						totaltime+=seatnow.time.get(noweatmeal);
 						seatnow.time.set(noweatmeal,0);
 						seatnow.eat.set(noweatmeal,1);
+
 					}
 					else {
+						totaltime+=time;
 						seatnow.time.set(noweatmeal,seatnow.time.get(noweatmeal)-time);
 						time=0;
+
 					}
 				}
 				else {
 					if(totaltime+time>=seatnow.oktime.get(noweatmeal)) {
 						time=time-(seatnow.oktime.get(noweatmeal)-totaltime);
 						totaltime=seatnow.oktime.get(noweatmeal);
+
 					}
 					else {
 						totaltime+=time;

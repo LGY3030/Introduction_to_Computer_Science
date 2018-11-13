@@ -71,6 +71,7 @@ public class chef {
 		int check=0;
 		int nowdomeal=0;
 		int nowdonum=0;
+		int temp=0;
 		if(chefnow.meal.size()>0){
 			for(int i=0;i<chefnow.time.size();i++){
 				check=check-chefnow.time.get(i);
@@ -88,8 +89,8 @@ public class chef {
 						time=time-chefnow.time.get(nowdonum);
 						for(int i=0;i<chefnow.meal.size();i++){
 							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0){
+								temp=chefnow.time.get(i);
 								chefnow.oktime.set(i,chefnow.time.get(i)+totaltime);
-								chefnow.time.set(i,0);
 								switch(chefnow.seat.get(i)){
 									case 1:
 										for(int j=0;j<seat1.meal.size();j++){
@@ -130,8 +131,10 @@ public class chef {
 									default:
 										break;
 								}
+								chefnow.time.set(i,0);
 							}
-							totaltime+=chefnow.time.get(i);
+
+							totaltime+=temp;
 						}
 					}
 					else{
@@ -147,8 +150,8 @@ public class chef {
 				else{
 					if(time-chefnow.time.get(nowdonum)>=0){
 						time=time-chefnow.time.get(nowdonum);
+						temp=chefnow.time.get(nowdonum);
 						chefnow.oktime.set(nowdonum,chefnow.time.get(nowdonum)+totaltime);
-						chefnow.time.set(nowdonum,0);
 						switch(chefnow.seat.get(nowdonum)){
 							case 1:
 								for(int j=0;j<seat1.meal.size();j++){
@@ -189,7 +192,8 @@ public class chef {
 							default:
 								break;
 						}
-						totaltime+=chefnow.time.get(nowdonum);
+						chefnow.time.set(nowdonum,0);
+						totaltime+=temp;
 					}
 					else{
 						chefnow.time.set(nowdonum,chefnow.time.get(nowdonum)-time);
