@@ -13,6 +13,7 @@ public class hw3 {
 	static int nexttime=0;
 	static int delete=0;
 	static int ready=0;
+	static int totaltime=0;
 	public static void main(String[] args) {
 		
 
@@ -201,8 +202,17 @@ public class hw3 {
 					}
 				}
 				else if(get.substring(0,3).equals("nex")){
-					work(Integer.parseInt(get.substring(5,6)),chef1);
-					work(Integer.parseInt(get.substring(5,6)),chef2);
+					chef.work(totaltime,Integer.parseInt(get.substring(5)),chef1,seat1,seat2,seat3,seat4);
+					chef.work(totaltime,Integer.parseInt(get.substring(5)),chef2,seat1,seat2,seat3,seat4);
+					seat.eat(totaltime,Integer.parseInt(get.substring(5)),seat1);
+					seat.eat(totaltime,Integer.parseInt(get.substring(5)),seat2);
+					seat.eat(totaltime,Integer.parseInt(get.substring(5)),seat3);
+					seat.eat(totaltime,Integer.parseInt(get.substring(5)),seat4);
+					check(1,seat1);
+					check(2,seat2);
+					check(3,seat3);
+					check(4,seat4);
+					totaltime+=Integer.parseInt(get.substring(5,6));
 				}	
 				else {
 					break;
@@ -233,24 +243,28 @@ public class hw3 {
 						case 1:
 							seat1.meal.add(Integer.parseInt(get.substring(5,6)));
 							seat1.done.add(0);
+							seat1.oktime.add(0);
 							seat1.eat.add(0);
 							seat1.addtime(Integer.parseInt(get.substring(5,6)));
 							break;
 						case 2:
 							seat2.meal.add(Integer.parseInt(get.substring(5,6)));
 							seat2.done.add(0);
+							seat2.oktime.add(0);
 							seat2.eat.add(0);
 							seat2.addtime(Integer.parseInt(get.substring(5,6)));
 							break;
 						case 3:
 							seat3.meal.add(Integer.parseInt(get.substring(5,6)));
 							seat3.done.add(0);
+							seat3.oktime.add(0);
 							seat3.eat.add(0);
 							seat3.addtime(Integer.parseInt(get.substring(5,6)));
 							break;
 						case 4:
 							seat4.meal.add(Integer.parseInt(get.substring(5,6)));
 							seat4.done.add(0);
+							seat4.oktime.add(0);
 							seat4.eat.add(0);
 							seat4.addtime(Integer.parseInt(get.substring(5,6)));
 							break;
@@ -261,130 +275,36 @@ public class hw3 {
 			}
 		}
 	}
-	public static void work(int time,chef chefnow){
-		int check=0;
-		int nowdomeal=0;
-		int nowdonum=0;
-		if(chefnow.meal.size()>0){
-			for(int i=0;i<chefnow.time.size();i++){
-				check=check-chefnow.time.get(i);
+	public static void check(int num,seat seatnow) {
+		int check=1;
+		if(seatnow.meal.size()>0) {
+			for(int i=0;i<seatnow.meal.size();i++) {
+				check*=seatnow.eat.get(i);
 			}
-			while(time!=0&&check!=0){
-				for(int i=0;i<chefnow.meal.size();i++){
-					if(chefnow.time.get(i)!=0){
-						nowdomeal=chefnow.meal.get(i);
-						nowdonum=i;
-						break;
+			if(check==1) {
+				seatnow.meal.clear();
+				seatnow.done.clear();
+				seatnow.eat.clear();
+				seatnow.time.clear();
+				seatnow.oktime.clear();
+				seatnow.flag=0;
+				for(int i=0;i<chef1.meal.size();i++) {
+					if(chef1.seat.get(i)==num) {
+						chef1.meal.remove(i);
+						chef1.seat.remove(i);
+						chef1.time.remove(i);
+						chef1.oktime.remove(i);
 					}
 				}
-				if(chefnow.meal.get(nowdonum)==1||chefnow.meal.get(nowdonum)==3||chefnow.meal.get(nowdonum)==5){
-					if(time-chefnow.time.get(nowdonum)>=0){
-						time=time-chefnow.time.get(nowdonum);
-						for(int i=0;i<chefnow.meal.size();i++){
-							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0){
-								chefnow.oktime.set(i,chefnow.time.get(i));
-								chefnow.time.set(i,0);
-								switch(chefnow.seat.get(i)){
-									case 1:
-										for(int j=0;j<seat1.meal.size();j++){
-											if(seat1.meal.get(j)==nowdomeal&&seat1.done.get(j)==0){
-												seat1.done.set(j,1);
-												break;	
-											}
-										}
-										break;
-									case 2:
-										for(int j=0;j<seat2.meal.size();j++){
-											if(seat2.meal.get(j)==nowdomeal&&seat2.done.get(j)==0){
-												seat2.done.set(j,1);
-												break;	
-											}
-										}
-										break;
-									case 3:
-										for(int j=0;j<seat3.meal.size();j++){
-											if(seat3.meal.get(j)==nowdomeal&&seat3.done.get(j)==0){
-												seat3.done.set(j,1);
-												break;	
-											}
-										}
-										break;
-									case 4:
-										for(int j=0;j<seat4.meal.size();j++){
-											if(seat4.meal.get(j)==nowdomeal&&seat4.done.get(j)==0){
-												seat4.done.set(i,1);
-												break;	
-											}
-										}
-										break;
-									default:
-										break;
-								}
-							}
-						}
-					}
-					else{
-						for(int i=0;i<chefnow.meal.size();i++){
-							if(chefnow.meal.get(i)==nowdomeal&&chefnow.oktime.get(i)!=0){
-								chefnow.time.set(i, chefnow.meal.get(i)-time);
-								chefnow.oktime.set(i, time);
-							}
-						}
-						time=0;
+				for(int i=0;i<chef2.meal.size();i++) {
+					if(chef2.seat.get(i)==num) {
+						chef2.meal.remove(i);
+						chef2.seat.remove(i);
+						chef2.time.remove(i);
+						chef2.oktime.remove(i);
 					}
 				}
-				else{
-					if(time-chefnow.time.get(nowdonum)>=0){
-						time=time-chefnow.time.get(nowdonum);
-						chefnow.oktime.set(nowdonum,chefnow.time.get(nowdonum));
-						chefnow.time.set(nowdonum,0);
-						switch(chefnow.seat.get(nowdonum)){
-							case 1:
-								for(int j=0;j<seat1.meal.size();j++){
-									if(seat1.meal.get(j)==nowdomeal&&seat1.done.get(j)==0){
-										seat1.done.set(j,1);
-										break;	
-									}
-										}
-								break;
-							case 2:
-								for(int j=0;j<seat2.meal.size();j++){
-									if(seat2.meal.get(j)==nowdomeal&&seat2.done.get(j)==0){
-										seat2.done.set(j,1);
-										break;	
-									}
-								}
-								break;
-							case 3:
-								for(int j=0;j<seat3.meal.size();j++){
-									if(seat3.meal.get(j)==nowdomeal&&seat3.done.get(j)==0){
-										seat3.done.set(j,1);
-										break;	
-									}
-								}
-								break;
-							case 4:
-								for(int j=0;j<seat4.meal.size();j++){
-									if(seat4.meal.get(j)==nowdomeal&&seat4.done.get(j)==0){
-										seat4.done.set(j,1);
-										break;	
-									}
-								}
-								break;
-							default:
-								break;
-						}
-					}
-					else{
-						chefnow.time.set(nowdonum,chefnow.time.get(nowdonum)-time);
-						time=0;
-					}
-				}
-				for(int i=0;i<chefnow.oktime.size();i++){
-					check=check-chefnow.time.get(i);
-				}	
 			}
-		}		
+		}
 	}
 }
-

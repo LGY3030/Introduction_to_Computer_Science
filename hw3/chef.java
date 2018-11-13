@@ -67,4 +67,141 @@ public class chef {
 			}
 		}
 	}
+	public static void work(int totaltime,int time,chef chefnow,seat seat1,seat seat2,seat seat3,seat seat4){
+		int check=0;
+		int nowdomeal=0;
+		int nowdonum=0;
+		if(chefnow.meal.size()>0){
+			for(int i=0;i<chefnow.time.size();i++){
+				check=check-chefnow.time.get(i);
+			}
+			while(time!=0&&check!=0){
+				for(int i=0;i<chefnow.meal.size();i++){
+					if(chefnow.time.get(i)!=0){
+						nowdomeal=chefnow.meal.get(i);
+						nowdonum=i;
+						break;
+					}
+				}
+				if(chefnow.meal.get(nowdonum)==1||chefnow.meal.get(nowdonum)==3||chefnow.meal.get(nowdonum)==5){
+					if(time-chefnow.time.get(nowdonum)>=0){
+						time=time-chefnow.time.get(nowdonum);
+						for(int i=0;i<chefnow.meal.size();i++){
+							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0){
+								chefnow.oktime.set(i,chefnow.time.get(i)+totaltime);
+								chefnow.time.set(i,0);
+								switch(chefnow.seat.get(i)){
+									case 1:
+										for(int j=0;j<seat1.meal.size();j++){
+											if(seat1.meal.get(j)==nowdomeal&&seat1.done.get(j)==0){
+												seat1.done.set(j,1);
+												seat1.oktime.set(j,chefnow.time.get(i)+totaltime);
+												break;	
+											}
+										}
+										break;
+									case 2:
+										for(int j=0;j<seat2.meal.size();j++){
+											if(seat2.meal.get(j)==nowdomeal&&seat2.done.get(j)==0){
+												seat2.done.set(j,1);
+												seat2.oktime.set(j,chefnow.time.get(i)+totaltime);
+												break;	
+											}
+										}
+										break;
+									case 3:
+										for(int j=0;j<seat3.meal.size();j++){
+											if(seat3.meal.get(j)==nowdomeal&&seat3.done.get(j)==0){
+												seat3.done.set(j,1);
+												seat3.oktime.set(j,chefnow.time.get(i)+totaltime);
+												break;	
+											}
+										}
+										break;
+									case 4:
+										for(int j=0;j<seat4.meal.size();j++){
+											if(seat4.meal.get(j)==nowdomeal&&seat4.done.get(j)==0){
+												seat4.done.set(i,1);
+												seat4.oktime.set(j,chefnow.time.get(i)+totaltime);
+												break;	
+											}
+										}
+										break;
+									default:
+										break;
+								}
+							}
+							totaltime+=chefnow.time.get(i);
+						}
+					}
+					else{
+						for(int i=0;i<chefnow.meal.size();i++){
+							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0){
+								chefnow.time.set(i, chefnow.meal.get(i)-time);
+							}
+						}
+						totaltime+=time;
+						time=0;
+					}
+				}
+				else{
+					if(time-chefnow.time.get(nowdonum)>=0){
+						time=time-chefnow.time.get(nowdonum);
+						chefnow.oktime.set(nowdonum,chefnow.time.get(nowdonum)+totaltime);
+						chefnow.time.set(nowdonum,0);
+						switch(chefnow.seat.get(nowdonum)){
+							case 1:
+								for(int j=0;j<seat1.meal.size();j++){
+									if(seat1.meal.get(j)==nowdomeal&&seat1.done.get(j)==0){
+										seat1.done.set(j,1);
+										seat1.oktime.set(j,chefnow.time.get(nowdonum)+totaltime);
+										break;	
+									}
+										}
+								break;
+							case 2:
+								for(int j=0;j<seat2.meal.size();j++){
+									if(seat2.meal.get(j)==nowdomeal&&seat2.done.get(j)==0){
+										seat2.done.set(j,1);
+										seat2.oktime.set(j,chefnow.time.get(nowdonum)+totaltime);
+										break;	
+									}
+								}
+								break;
+							case 3:
+								for(int j=0;j<seat3.meal.size();j++){
+									if(seat3.meal.get(j)==nowdomeal&&seat3.done.get(j)==0){
+										seat3.done.set(j,1);
+										seat3.oktime.set(j,chefnow.time.get(nowdonum)+totaltime);
+										break;	
+									}
+								}
+								break;
+							case 4:
+								for(int j=0;j<seat4.meal.size();j++){
+									if(seat4.meal.get(j)==nowdomeal&&seat4.done.get(j)==0){
+										seat4.done.set(j,1);
+										seat4.oktime.set(j,chefnow.time.get(nowdonum)+totaltime);
+										break;	
+									}
+								}
+								break;
+							default:
+								break;
+						}
+						totaltime+=chefnow.time.get(nowdonum);
+					}
+					else{
+						chefnow.time.set(nowdonum,chefnow.time.get(nowdonum)-time);
+						totaltime+=time;
+						time=0;
+					}
+
+				}
+				for(int i=0;i<chefnow.oktime.size();i++){
+					check=check-chefnow.time.get(i);
+				}	
+			}
+		}		
+	}
 }
