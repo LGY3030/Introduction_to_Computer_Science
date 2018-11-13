@@ -20,9 +20,12 @@ public class hw3 {
 
 		
 		while(true) {
-			
+			System.out.println("");
+			System.out.println("===========================================================");
+			System.out.println("");
+
 			if(mode==0) {
-				
+				System.out.println("輸入指令:");
 				get=scanner.nextLine();
 				
 				if(get.substring(0,3).equals("new")){
@@ -70,19 +73,25 @@ public class hw3 {
 				else if(get.substring(0,3).equals("sta")){
 					if(get.substring(7,8).equals("t")){
 						if(seat1.flag==1) {
-							System.out.println("座位1有人");
+							System.out.println("");
+							System.out.println("---座位1有人---");
 							if(seat1.meal.isEmpty()==true) {
+								System.out.println("");
 								System.out.println("無餐點");
 							}
 							else {
+								System.out.println("");
 								System.out.println("已上桌:");
+								System.out.println("");
 								for(int i=0;i<seat1.done.size();i++) {
 									if(seat1.done.get(i)==1) {
 										seat1.printmeal(i);
 									}
 								}
 								System.out.println("");
+
 								System.out.println("未上桌:");
+								System.out.println("");
 								for(int i=0;i<seat1.done.size();i++) {
 									if(seat1.done.get(i)==0) {
 										seat1.printmeal(i);
@@ -91,19 +100,25 @@ public class hw3 {
 							}
 						}
 						if(seat2.flag==1) {
-							System.out.println("座位2有人");
+							System.out.println("");
+							System.out.println("---座位2有人---");
 							if(seat2.meal.isEmpty()==true) {
+								System.out.println("");
 								System.out.println("無餐點");
 							}
 							else {
+								System.out.println("");
 								System.out.println("已上桌:");
+								System.out.println("");
 								for(int i=0;i<seat2.done.size();i++) {
 									if(seat2.done.get(i)==1) {
 										seat2.printmeal(i);
 									}
 								}
+
 								System.out.println("");
 								System.out.println("未上桌:");
+								System.out.println("");
 								for(int i=0;i<seat2.done.size();i++) {
 									if(seat2.done.get(i)==0) {
 										seat2.printmeal(i);
@@ -112,19 +127,25 @@ public class hw3 {
 							}
 						}
 						if(seat3.flag==1) {
-							System.out.println("座位3有人");
+							System.out.println("");
+							System.out.println("---座位3有人---");
 							if(seat3.meal.isEmpty()==true) {
+								System.out.println("");
 								System.out.println("無餐點");
 							}
 							else {
+								System.out.println("");
 								System.out.println("已上桌:");
+								System.out.println("");
 								for(int i=0;i<seat3.done.size();i++) {
 									if(seat3.done.get(i)==1) {
 										seat3.printmeal(i);
 									}
 								}
+
 								System.out.println("");
 								System.out.println("未上桌:");
+								System.out.println("");
 								for(int i=0;i<seat3.done.size();i++) {
 									if(seat3.done.get(i)==0) {
 										seat3.printmeal(i);
@@ -133,19 +154,25 @@ public class hw3 {
 							}
 						}
 						if(seat4.flag==1) {
-							System.out.println("座位4有人");
+							System.out.println("");
+							System.out.println("---座位4有人---");
 							if(seat4.meal.isEmpty()==true) {
+								System.out.println("");
 								System.out.println("無餐點");
 							}
 							else {
+								System.out.println("");
 								System.out.println("已上桌:");
+								System.out.println("");
 								for(int i=0;i<seat4.done.size();i++) {
 									if(seat4.done.get(i)==1) {
 										seat4.printmeal(i);
 									}
 								}
+
 								System.out.println("");
 								System.out.println("未上桌:");
+								System.out.println("");
 								for(int i=0;i<seat4.done.size();i++) {
 									if(seat4.done.get(i)==0) {
 										seat4.printmeal(i);
@@ -155,12 +182,16 @@ public class hw3 {
 						}
 					}
 					else{
-						System.out.println("廚師1");
+						System.out.println("");
+						System.out.println("---廚師1---");
 						if(chef1.meal.size()==0) {
+							System.out.println("");
 							System.out.println("無餐點");
 						}
 						else {
+							System.out.println("");
 							System.out.println("正在準備餐點:");
+							System.out.println("");
 							for(int i=0;i<chef1.meal.size();i++){
 								if(chef1.oktime.get(i)==0){
 									chef1.printmeal(i);
@@ -168,8 +199,11 @@ public class hw3 {
 									break;
 								}
 							}
+
+							System.out.println("");
 							System.out.println("");
 							System.out.println("未準備餐點:");
+							System.out.println("");
 							for(int i=0;i<chef1.meal.size();i++) {
 								if(chef1.oktime.get(i)==0&&i!=ready){
 									chef1.printmeal(i);
@@ -177,12 +211,16 @@ public class hw3 {
 							}
 						}
 						System.out.println("");
-						System.out.println("廚師2");
+						System.out.println("");
+						System.out.println("---廚師2---");
 						if(chef2.meal.size()==0) {
+							System.out.println("");
 							System.out.println("無餐點");
 						}
 						else {
+							System.out.println("");
 							System.out.println("正在準備餐點:");
+							System.out.println("");
 							for(int i=0;i<chef2.meal.size();i++){
 								if(chef2.oktime.get(i)==0){
 									chef2.printmeal(i);
@@ -190,8 +228,11 @@ public class hw3 {
 									break;
 								}
 							}
+
+							System.out.println("");
 							System.out.println("");
 							System.out.println("未準備餐點:");
+							System.out.println("");
 							for(int i=0;i<chef2.meal.size();i++) {
 								if(chef2.oktime.get(i)==0&&i!=ready){
 									chef2.printmeal(i);
@@ -211,12 +252,6 @@ public class hw3 {
 					check(2,seat2);
 					check(3,seat3);
 					check(4,seat4);
-					for(int i=0;i<seat3.meal.size();i++){
-System.out.println(seat3.eat.get(i));
-}
-				for(int i=0;i<seat3.meal.size();i++){
-System.out.println(seat3.done.get(i));
-}
 					totaltime+=Integer.parseInt(get.substring(5));
 				}	
 				else {
@@ -226,7 +261,8 @@ System.out.println(seat3.done.get(i));
 			
 			
 			if(mode==1) {
-				
+				System.out.println("");
+				System.out.println("點餐:");
 				get=scanner.nextLine();
 				if(get.substring(0,3).equals("end")) {
 					mode=0;
