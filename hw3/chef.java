@@ -171,7 +171,7 @@ public class chef {
 					//剩餘時間小於該餐點所需製作時間，做不完，所以將該餐點製作時間減去剩餘時間
 					else{
 						for(int i=0;i<chefnow.meal.size();i++){
-							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0){
+							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0&&chefnow.time.get(i)==chefnow.time.get(nowdonum)){
 								chefnow.time.set(i, chefnow.meal.get(i)-time);
 							}
 						}
