@@ -108,7 +108,7 @@ public class chef {
 
 						//因為此餐點可以同時製作多份，所以找出所有相同的餐點
 						for(int i=0;i<chefnow.meal.size();i++){
-							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0){
+							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0&&chefnow.time.get(i)==chefnow.time.get(nowdonum)){
 								temp=chefnow.time.get(i);
 								chefnow.oktime.set(i,chefnow.time.get(i)+totaltime);        //紀錄完成時間
 
