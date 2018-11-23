@@ -82,6 +82,7 @@ public class chef {
 		int nowdonum=0;        //紀錄正在做的餐點的index
 		int temp=0;        //暫存餐點需要製作時間
 		int temp2=0;
+		int temp3=0;
 
 		//廚師有餐點可以製作
 		if(chefnow.meal.size()>0){
@@ -101,6 +102,7 @@ public class chef {
 						break;
 					}
 				}
+				temp3=chefnow.time.get(nowdonum);
 				//該餐點可以同時製作多份
 				if(chefnow.meal.get(nowdonum)==1||chefnow.meal.get(nowdonum)==3||chefnow.meal.get(nowdonum)==5){
 					//剩餘時間大於該餐點所需製作時間
@@ -109,7 +111,7 @@ public class chef {
 
 						//因為此餐點可以同時製作多份，所以找出所有相同的餐點
 						for(int i=0;i<chefnow.meal.size();i++){
-							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0&&chefnow.time.get(i)==chefnow.time.get(nowdonum)){
+							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0&&chefnow.time.get(i)==temp3){
 								temp=chefnow.time.get(i);
 								chefnow.oktime.set(i,chefnow.time.get(i)+totaltime);        //紀錄完成時間
 								temp2=chefnow.time.get(i)+totaltime;
@@ -172,7 +174,7 @@ public class chef {
 					//剩餘時間小於該餐點所需製作時間，做不完，所以將該餐點製作時間減去剩餘時間
 					else{
 						for(int i=0;i<chefnow.meal.size();i++){
-							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0&&chefnow.time.get(i)==chefnow.time.get(nowdonum)){
+							if(chefnow.meal.get(i)==nowdomeal&&chefnow.time.get(i)!=0&&chefnow.time.get(i)==temp3){
 								temp2=chefnow.time.get(i)-time;
 								chefnow.time.set(i,temp2);
 							}

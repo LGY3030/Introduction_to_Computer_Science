@@ -46,8 +46,11 @@ public class hw3 {
 								order=1;
 								mode=1;
 							}
-							else
+							else{
 								System.out.println("該座位有人");
+								order=1;
+								mode=1;
+							}
 							break;
 						//2號桌
 						case 2:
@@ -56,8 +59,11 @@ public class hw3 {
 								order=2;
 								mode=1;
 							}
-							else
+							else{
 								System.out.println("該座位有人");
+								order=2;
+								mode=1;
+							}
 							break;
 						//3號桌
 						case 3:
@@ -66,8 +72,11 @@ public class hw3 {
 								order=3;
 								mode=1;
 							}
-							else
+							else{
 								System.out.println("該座位有人");
+								order=3;
+								mode=1;
+							}
 							break;
 						//4號桌
 						case 4:
@@ -76,8 +85,11 @@ public class hw3 {
 								order=4;
 								mode=1;
 							}
-							else
+							else{
 								System.out.println("該座位有人");
+								order=4;
+								mode=1;
+							}
 							break;
 						default:
 							break;
@@ -223,7 +235,7 @@ public class hw3 {
 						}
 					}
 
-					//查看廚師狀況，直接印出美個廚師的餐點
+					//查看廚師狀況，直接印出每個廚師的餐點
 					else{
 						//廚師1
 						System.out.println("");
@@ -242,7 +254,16 @@ public class hw3 {
 							System.out.println("");
 							for(int i=0;i<chef1.meal.size();i++){
 								if(chef1.oktime.get(i)==0){
-									chef1.printmeal(i);
+									if(chef1.meal.get(i)==1||chef1.meal.get(i)==3||chef1.meal.get(i)==5){
+										for(int j=0;j<chef1.meal.size();j++){
+											if(chef1.meal.get(i)==chef1.meal.get(j)&&chef1.time.get(i)==chef1.time.get(j)){
+												chef1.printmeal(j);
+											}
+										}
+									}
+									else{
+										chef1.printmeal(i);
+									}
 									ready=i;
 									break;
 								}
@@ -253,8 +274,13 @@ public class hw3 {
 							System.out.println("未準備餐點:");
 							System.out.println("");
 							for(int i=0;i<chef1.meal.size();i++) {
-								if(chef1.oktime.get(i)==0&&i!=ready){
-									chef1.printmeal(i);
+								if(chef1.oktime.get(i)==0){
+									if(chef1.meal.get(i)==chef1.meal.get(ready)&&chef1.time.get(i)==chef1.time.get(ready)){
+										;
+									}
+									else{
+										chef1.printmeal(i);
+									}
 								}
 							}
 						}
@@ -277,7 +303,16 @@ public class hw3 {
 							System.out.println("");
 							for(int i=0;i<chef2.meal.size();i++){
 								if(chef2.oktime.get(i)==0){
-									chef2.printmeal(i);
+									if(chef2.meal.get(i)==1||chef2.meal.get(i)==3||chef2.meal.get(i)==5){
+										for(int j=0;j<chef2.meal.size();j++){
+											if(chef2.meal.get(i)==chef2.meal.get(j)&&chef2.time.get(i)==chef2.time.get(j)){
+												chef2.printmeal(j);
+											}
+										}
+									}
+									else{
+										chef2.printmeal(i);
+									}
 									ready=i;
 									break;
 								}
@@ -288,8 +323,13 @@ public class hw3 {
 							System.out.println("未準備餐點:");
 							System.out.println("");
 							for(int i=0;i<chef2.meal.size();i++) {
-								if(chef2.oktime.get(i)==0&&i!=ready){
-									chef2.printmeal(i);
+								if(chef2.oktime.get(i)==0){
+									if(chef2.meal.get(i)==chef2.meal.get(ready)&&chef2.time.get(i)==chef2.time.get(ready)){
+										;
+									}
+									else{
+										chef2.printmeal(i);
+									}
 								}
 							}
 						}
