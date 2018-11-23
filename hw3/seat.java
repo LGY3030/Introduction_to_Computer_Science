@@ -13,19 +13,31 @@ public class seat {
 	public void printmeal(int i){
 		if(meal.get(i)==1){
 			System.out.println("炒飯");
+			System.out.println(eat.get(i));
+			System.out.println(time.get(i));
 		}
 		else if(meal.get(i)==2){
 			System.out.println("鍋燒意麵");
+			System.out.println(eat.get(i));
+			System.out.println(time.get(i));
 		}
 		else if(meal.get(i)==3){
 			System.out.println("炒青菜");
+			System.out.println(eat.get(i));
+			System.out.println(time.get(i));
 		}
 		else if(meal.get(i)==4){
 			System.out.println("奶油千層蛋糕");
+			System.out.println(eat.get(i));
+			System.out.println(time.get(i));
 		}
 		else{
 			System.out.println("綜合果汁");
+			System.out.println(eat.get(i));
+			System.out.println(time.get(i));
 		}
+
+		System.out.println(oktime.get(i));
 	}
 
 	//將餐點食用時間加入time arraylist
@@ -57,6 +69,7 @@ public class seat {
 		int noweatmeal=0;        //目前食用的餐點
 		int temp=10000;        //暫存餐點完成時間
 		int check=1;        //判斷已上桌但未食用的餐點
+		int temp2=0;
 		
 		//顧客有餐點可以食用
 		if(seatnow.meal.size()>0) {
@@ -98,8 +111,11 @@ public class seat {
 					}
 					//模擬時間小於餐點需食用時間(代表不能食用完畢)
 					else {
+						System.out.println("in");
 						totaltime+=time;
-						seatnow.time.set(noweatmeal,seatnow.time.get(noweatmeal)-time);
+						temp2=seatnow.time.get(noweatmeal)-time;
+						seatnow.time.set(noweatmeal,temp2);
+						System.out.println(seatnow.time.get(noweatmeal));
 						time=0;
 
 					}

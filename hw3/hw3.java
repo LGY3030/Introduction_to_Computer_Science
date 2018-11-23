@@ -217,6 +217,10 @@ public class hw3 {
 								}
 							}
 						}
+						if(seat1.flag==0&&seat2.flag==0&&seat3.flag==0&&seat4.flag==0){
+							System.out.println("");
+							System.out.println("無客人");	
+						}
 					}
 
 					//查看廚師狀況，直接印出美個廚師的餐點
@@ -294,23 +298,19 @@ public class hw3 {
 
 				//模擬經過時間
 				else if(get.substring(0,3).equals("nex")){
-
 					//call 廚師的workfunction
 					chef.work(totaltime,Integer.parseInt(get.substring(5)),chef1,seat1,seat2,seat3,seat4);
 					chef.work(totaltime,Integer.parseInt(get.substring(5)),chef2,seat1,seat2,seat3,seat4);
-
 					//call 位子的eat function
 					seat.eat(totaltime,Integer.parseInt(get.substring(5)),seat1);
 					seat.eat(totaltime,Integer.parseInt(get.substring(5)),seat2);
 					seat.eat(totaltime,Integer.parseInt(get.substring(5)),seat3);
 					seat.eat(totaltime,Integer.parseInt(get.substring(5)),seat4);
-
 					//檢查位子的顧客是否吃完
 					check(1,seat1);
 					check(2,seat2);
 					check(3,seat3);
 					check(4,seat4);
-
 					//累計的模擬時間增加
 					totaltime+=Integer.parseInt(get.substring(5));
 				}
