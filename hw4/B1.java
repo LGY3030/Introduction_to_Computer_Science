@@ -1,4 +1,5 @@
 
+
 public class B1 extends fireCard{
 
 	public B1() {

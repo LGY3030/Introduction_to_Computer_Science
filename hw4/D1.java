@@ -1,5 +1,4 @@
 
-
 public class D1 extends thunderCard{
 
 	public D1() {
