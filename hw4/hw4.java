@@ -15,7 +15,7 @@ public class hw4 {
 		player1.name=getname[0].substring(1);
 		player2.name=getname[1].substring(1);
 		for(int i=0;i<15;i++) {
-			System.out.println(player1.allcards[i]);
+			System.out.println(player1.allcards.get(i));
 		}
 	}
 }
