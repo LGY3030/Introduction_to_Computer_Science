@@ -1,9 +1,9 @@
-
-
 public class soilCard {
 	int attack;
 	int health;
 	int crystal;
+	int status;
+	int attackflag;
 	int attack(String card) {
 		if(card=="D") {
 			attack=attack-1;

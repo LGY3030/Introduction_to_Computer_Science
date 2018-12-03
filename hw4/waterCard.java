@@ -1,9 +1,9 @@
-
-
 public class waterCard {
 	int attack;
 	int health;
 	int crystal;
+	int status;
+	int attackflag;
 	int attack(String card) {
 		if(card=="E") {
 			attack=attack-1;

@@ -14,7 +14,7 @@ public class player {
 	public player(String person) {
 		
 		health=20;
-		crystal=0;
+		crystal=1;
 		name="";
 		cards=new ArrayList();
 		allcards=new ArrayList();
@@ -36,6 +36,8 @@ public class player {
 			}
 		}
 		else {
+			round/=3;
+			round+=1;
 			for(int i=0;i<round-1;i++) {
 				if(cards.size()==8) {
 					allcards.remove(0);
