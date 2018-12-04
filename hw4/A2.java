@@ -6,5 +6,6 @@ public class A2 extends waterCard{
 		this.crystal=1;
 		this.status=statusnum;
 		this.attackflag=0;
+		this.action=0;
 	}
 }

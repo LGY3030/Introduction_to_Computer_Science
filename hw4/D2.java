@@ -6,5 +6,6 @@ public class D2 extends thunderCard{
 		this.crystal=3;
 		this.status=statusnum;
 		this.attackflag=0;
+		this.action=0;
 	}
 }

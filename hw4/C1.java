@@ -6,5 +6,6 @@ public class C1 extends windCard{
 		this.crystal=6;
 		this.status=statusnum;
 		this.attackflag=0;
+		this.action=0;
 	}
 }

@@ -59,43 +59,52 @@ public class hw4 {
 					break;
 				}
 				round+=1;
-				changeattackflag();
+				changeAttackFlagAndAction();
 				player1.crystal=round;
 				player2.crystal=round;
 			}
 		}
 	}
 
-	private static void changeattackflag() {
+	private static void changeAttackFlagAndAction() {
 		for(int i=0;i<6;i++) {
 			if(player1areahint[i].length()==2) {
 				switch(player1areahint[i]) {
 					case "A1":
 						((A1)player1area[i]).attackflag=1;
+						((A1)player1area[i]).action=0;
 						break;
 					case "A2":
-						((A1)player1area[i]).attackflag=1;
+						((A2)player1area[i]).attackflag=1;
+						((A2)player1area[i]).action=0;
 						break;
 					case "B1":
-						((A1)player1area[i]).attackflag=1;
+						((B1)player1area[i]).attackflag=1;
+						((B1)player1area[i]).action=0;
 						break;
 					case "B2":
-						((A1)player1area[i]).attackflag=1;
+						((B2)player1area[i]).attackflag=1;
+						((B2)player1area[i]).action=0;
 						break;
 					case "C1":
-						((A1)player1area[i]).attackflag=1;
+						((C1)player1area[i]).attackflag=1;
+						((C1)player1area[i]).action=0;
 						break;
 					case "C2":
-						((A1)player1area[i]).attackflag=1;
+						((C2)player1area[i]).attackflag=1;
+						((C2)player1area[i]).action=0;
 						break;
 					case "D1":
-						((A1)player1area[i]).attackflag=1;
+						((D1)player1area[i]).attackflag=1;
+						((D1)player1area[i]).action=0;
 						break;
 					case "D2":
-						((A1)player1area[i]).attackflag=1;
+						((D2)player1area[i]).attackflag=1;
+						((D2)player1area[i]).action=0;
 						break;
 					case "E1":
-						((A1)player1area[i]).attackflag=1;
+						((E1)player1area[i]).attackflag=1;
+						((E1)player1area[i]).action=0;
 						break;
 					default:
 						break;
@@ -105,30 +114,39 @@ public class hw4 {
 				switch(player2areahint[i]) {
 					case "A1":
 						((A1)player2area[i]).attackflag=1;
+						((A1)player2area[i]).action=0;
 						break;
 					case "A2":
-						((A1)player2area[i]).attackflag=1;
+						((A2)player2area[i]).attackflag=1;
+						((A2)player2area[i]).action=0;
 						break;
 					case "B1":
-						((A1)player2area[i]).attackflag=1;
+						((B1)player2area[i]).attackflag=1;
+						((B1)player2area[i]).action=0;
 						break;
 					case "B2":
-						((A1)player2area[i]).attackflag=1;
+						((B2)player2area[i]).attackflag=1;
+						((B2)player2area[i]).action=0;
 						break;
 					case "C1":
-						((A1)player2area[i]).attackflag=1;
+						((C1)player2area[i]).attackflag=1;
+						((C1)player2area[i]).action=0;
 						break;
 					case "C2":
-						((A1)player2area[i]).attackflag=1;
+						((C2)player2area[i]).attackflag=1;
+						((C2)player2area[i]).action=0;
 						break;
 					case "D1":
-						((A1)player2area[i]).attackflag=1;
+						((D1)player2area[i]).attackflag=1;
+						((D1)player2area[i]).action=0;
 						break;
 					case "D2":
-						((A1)player2area[i]).attackflag=1;
+						((D2)player2area[i]).attackflag=1;
+						((D2)player2area[i]).action=0;
 						break;
 					case "E1":
-						((A1)player2area[i]).attackflag=1;
+						((E1)player2area[i]).attackflag=1;
+						((E1)player2area[i]).action=0;
 						break;
 					default:
 						break;
@@ -141,58 +159,85 @@ public class hw4 {
 		if(player==1) {
 			switch(player1areahint[place-1]) {
 				case "A1":
-					if(((A1)player1area[place-1]).status==1)
+					if(((A1)player1area[place-1]).status==1) {
 						((A1)player1area[place-1]).status=0;
-					else
+					}	
+					else {
 						((A1)player1area[place-1]).status=1;
+					}
+					((A1)player1area[place-1]).action=1;
 					break;
 				case "A2":
-					if(((A2)player1area[place-1]).status==1)
+					if(((A2)player1area[place-1]).status==1) {
 						((A2)player1area[place-1]).status=0;
-					else
+					}
+					else {
 						((A2)player1area[place-1]).status=1;
+					}
+					((A2)player1area[place-1]).action=1;
 					break;
 				case "B1":
-					if(((B1)player1area[place-1]).status==1)
+					if(((B1)player1area[place-1]).status==1) {
 						((B1)player1area[place-1]).status=0;
-					else
+					}
+					else {
 						((B1)player1area[place-1]).status=1;
+					}
+					((B1)player1area[place-1]).action=1;
 					break;
 				case "B2":
-					if(((B2)player1area[place-1]).status==1)
+					if(((B2)player1area[place-1]).status==1) {
 						((B2)player1area[place-1]).status=0;
-					else
+					}
+					else {
 						((B2)player1area[place-1]).status=1;
+					}
+					((B2)player1area[place-1]).action=1;
 					break;
 				case "C1":
-					if(((C1)player1area[place-1]).status==1)
+					if(((C1)player1area[place-1]).status==1) {
 						((C1)player1area[place-1]).status=0;
-					else
+					}
+					else {
 						((C1)player1area[place-1]).status=1;
+					}	
+					((C1)player1area[place-1]).action=1;
 					break;
 				case "C2":
-					if(((C2)player1area[place-1]).status==1)
+					if(((C2)player1area[place-1]).status==1) {
 						((C2)player1area[place-1]).status=0;
-					else
+					}
+					else {
 						((C2)player1area[place-1]).status=1;
+					}
+					((C2)player1area[place-1]).action=1;
 					break;
 				case "D1":
-					if(((D1)player1area[place-1]).status==1)
+					if(((D1)player1area[place-1]).status==1) {
 						((D1)player1area[place-1]).status=0;
-					else
+					}
+					else {
 						((D1)player1area[place-1]).status=1;
+					}	
+					((D1)player1area[place-1]).action=1;
 					break;
 				case "D2":
-					if(((D2)player1area[place-1]).status==1)
+					if(((D2)player1area[place-1]).status==1) {
 						((D2)player1area[place-1]).status=0;
-					else
+					}
+					else {
 						((D2)player1area[place-1]).status=1;
+					}
+					((D2)player1area[place-1]).action=1;
 					break;
 				case "E1":
-					if(((E1)player1area[place-1]).status==1)
+					if(((E1)player1area[place-1]).status==1) {
 						((E1)player1area[place-1]).status=0;
-					else
+					}
+					else {
 						((E1)player1area[place-1]).status=1;
+					}
+					((E1)player1area[place-1]).action=1;
 					break;
 				default:
 					break;
@@ -201,58 +246,85 @@ public class hw4 {
 		else {
 			switch(player2areahint[place-1]) {
 				case "A1":
-					if(((A1)player2area[place-1]).status==1)
+					if(((A1)player2area[place-1]).status==1) {
 						((A1)player2area[place-1]).status=0;
-					else
+					}	
+					else {
 						((A1)player2area[place-1]).status=1;
+					}	
+					((A1)player2area[place-1]).action=1;
 					break;
 				case "A2":
-					if(((A2)player2area[place-1]).status==1)
+					if(((A2)player2area[place-1]).status==1) {
 						((A2)player2area[place-1]).status=0;
-					else
+					}
+					else {
 						((A2)player2area[place-1]).status=1;
+					}
+					((A2)player2area[place-1]).action=1;
 					break;
 				case "B1":
-					if(((B1)player2area[place-1]).status==1)
+					if(((B1)player2area[place-1]).status==1) {
 						((B1)player2area[place-1]).status=0;
-					else
+					}
+					else {
 						((B1)player2area[place-1]).status=1;
+					}
+					((B1)player2area[place-1]).action=1;
 					break;
 				case "B2":
-					if(((B2)player2area[place-1]).status==1)
+					if(((B2)player2area[place-1]).status==1) {
 						((B2)player2area[place-1]).status=0;
-					else
+					}
+					else {
 						((B2)player2area[place-1]).status=1;
+					}
+					((B2)player2area[place-1]).action=1;
 					break;
 				case "C1":
-					if(((C1)player2area[place-1]).status==1)
+					if(((C1)player2area[place-1]).status==1) {
 						((C1)player2area[place-1]).status=0;
-					else
+					}
+					else {
 						((C1)player2area[place-1]).status=1;
+					}	
+					((C1)player2area[place-1]).action=1;
 					break;
 				case "C2":
-					if(((C2)player2area[place-1]).status==1)
+					if(((C2)player2area[place-1]).status==1) {
 						((C2)player2area[place-1]).status=0;
-					else
+					}	
+					else {
 						((C2)player2area[place-1]).status=1;
+					}
+					((C2)player2area[place-1]).action=1;
 					break;
 				case "D1":
-					if(((D1)player2area[place-1]).status==1)
+					if(((D1)player2area[place-1]).status==1) {
 						((D1)player2area[place-1]).status=0;
-					else
+					}	
+					else {
 						((D1)player2area[place-1]).status=1;
+					}
+					((D1)player2area[place-1]).action=1;
 					break;
 				case "D2":
-					if(((D2)player2area[place-1]).status==1)
+					if(((D2)player2area[place-1]).status==1) {
 						((D2)player2area[place-1]).status=0;
-					else
+					}	
+					else {
 						((D2)player2area[place-1]).status=1;
+					}
+					((D2)player2area[place-1]).action=1;
 					break;
 				case "E1":
-					if(((E1)player2area[place-1]).status==1)
+					if(((E1)player2area[place-1]).status==1) {
 						((E1)player2area[place-1]).status=0;
-					else
+					}
+					else {
 						((E1)player2area[place-1]).status=1;
+					}
+					((E1)player2area[place-1]).action=1;
 					break;
 				default:
 					break;

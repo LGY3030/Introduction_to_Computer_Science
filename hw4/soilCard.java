@@ -4,6 +4,7 @@ public class soilCard {
 	int crystal;
 	int status;
 	int attackflag;
+	int action;
 	int attack(String card) {
 		if(card=="D") {
 			attack=attack-1;

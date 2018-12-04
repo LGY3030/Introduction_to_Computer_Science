@@ -6,5 +6,6 @@ public class E1 extends soilCard{
 		this.crystal=2;
 		this.status=statusnum;
 		this.attackflag=0;
+		this.action=0;
 	}
 }

@@ -4,6 +4,7 @@ public class waterCard {
 	int crystal;
 	int status;
 	int attackflag;
+	int action;
 	int attack(String card) {
 		if(card=="E") {
 			attack=attack-1;

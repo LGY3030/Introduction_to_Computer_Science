@@ -6,5 +6,6 @@ public class B2 extends fireCard{
 		this.crystal=5;
 		this.status=statusnum;
 		this.attackflag=0;
+		this.action=0;
 	}
 }

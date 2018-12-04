@@ -4,6 +4,7 @@ public class windCard {
 	int crystal;
 	int status;
 	int attackflag;
+	int action;
 	int attack(String card) {
 		if(card=="B") {
 			attack=attack-1;
