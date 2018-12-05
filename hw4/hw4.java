@@ -48,7 +48,7 @@ public class hw4 {
 							
 						}
 						else {
-							
+							attackcard(Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),instruction[2].substring(0,1));
 						}
 					}
 					instruction=scanner.next().split(" ");
@@ -62,6 +62,303 @@ public class hw4 {
 				changeAttackFlagAndAction();
 				player1.crystal=round;
 				player2.crystal=round;
+			}
+		}
+	}
+
+	private static void attackcard(int offend, int defend, String hint) {
+		int offendattack=0;
+		int defendattack=0;
+		int stopflag=0;
+		if(player1areahint[offend-1].length()==2) {
+			switch(player1areahint[offend-1]) {
+				case "A1":
+					if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
+						offendattack=((A1)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "A2":
+					if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
+						offendattack=((A2)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "B1":
+					if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
+						offendattack=((B1)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "B2":
+					if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
+						offendattack=((B2)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "C1":
+					if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
+						offendattack=((C1)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "C2":
+					if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
+						offendattack=((C2)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "D1":
+					if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
+						offendattack=((D1)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "D2":
+					if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
+						offendattack=((D2)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "E1":
+					if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
+						offendattack=((E1)player1area[offend-1]).attack(hint);
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		if(stopflag==0) {
+			
+			if(player2areahint[defend-1].length()==2) {
+				switch(player2areahint[defend-1]) {
+					case "A1":
+						defendattack=((A1)player2area[defend-1]).attack;
+						((A1)player2area[defend-1]).health-=offendattack;
+						break;
+					case "A2":
+						defendattack=((A2)player2area[defend-1]).attack;
+						((A2)player2area[defend-1]).health-=offendattack;
+						break;
+					case "B1":
+						defendattack=((B1)player2area[defend-1]).attack;
+						((B1)player2area[defend-1]).health-=offendattack;
+						break;
+					case "B2":
+						defendattack=((B2)player2area[defend-1]).attack;
+						((B2)player2area[defend-1]).health-=offendattack;
+						break;
+					case "C1":
+						defendattack=((C1)player2area[defend-1]).attack;
+						((C1)player2area[defend-1]).health-=offendattack;
+						break;
+					case "C2":
+						defendattack=((C2)player2area[defend-1]).attack;
+						((C2)player2area[defend-1]).health-=offendattack;
+						break;
+					case "D1":
+						defendattack=((D1)player2area[defend-1]).attack;
+						((D1)player2area[defend-1]).health-=offendattack;
+						break;
+					case "D2":
+						defendattack=((D2)player2area[defend-1]).attack;
+						((D2)player2area[defend-1]).health-=offendattack;
+						break;
+					case "E1":
+						defendattack=((E1)player2area[defend-1]).attack;
+						((E1)player2area[defend-1]).health-=offendattack;
+						break;
+					default:
+						break;
+				}
+			}
+			if(player1areahint[offend-1].length()==2) {
+				switch(player1areahint[offend-1]) {
+					case "A1":
+						((A1)player1area[offend-1]).health-=defendattack;
+						break;
+					case "A2":
+						((A2)player1area[offend-1]).health-=defendattack;
+						break;
+					case "B1":
+						((B1)player1area[offend-1]).health-=defendattack;
+						break;
+					case "B2":
+						((B2)player1area[offend-1]).health-=defendattack;
+						break;
+					case "C1":
+						((C1)player1area[offend-1]).health-=defendattack;
+						break;
+					case "C2":
+						((C2)player1area[offend-1]).health-=defendattack;
+						break;
+					case "D1":
+						((D1)player1area[offend-1]).health-=defendattack;
+						break;
+					case "D2":
+						((D2)player1area[offend-1]).health-=defendattack;
+						break;
+					case "E1":
+						((E1)player1area[offend-1]).health-=defendattack;
+						break;
+					default:
+						break;
+				}
+			}
+			checkdead();
+		}
+	}
+
+	private static void checkdead() {
+		for(int i=0;i<6;i++) {
+			if(player1areahint[i].length()==2) {
+				switch(player1areahint[i]) {
+					case "A1":
+						if(((A1)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					case "A2":
+						if(((A2)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					case "B1":
+						if(((B1)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					case "B2":
+						if(((B2)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					case "C1":
+						if(((C1)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					case "C2":
+						if(((C2)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					case "D1":
+						if(((D1)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					case "D2":
+						if(((D2)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					case "E1":
+						if(((E1)player1area[i]).health<=0) {
+							player1areahint[i]="";
+							player1area[i]=null;
+						}
+						break;
+					default:
+						break;
+				}
+			}
+			if(player2areahint[i].length()==2) {
+				switch(player2areahint[i]) {
+					case "A1":
+						if(((A1)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					case "A2":
+						if(((A2)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					case "B1":
+						if(((B1)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					case "B2":
+						if(((B2)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					case "C1":
+						if(((C1)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					case "C2":
+						if(((C2)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					case "D1":
+						if(((D1)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					case "D2":
+						if(((D2)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					case "E1":
+						if(((E1)player2area[i]).health<=0) {
+							player2areahint[i]="";
+							player2area[i]=null;
+						}
+						break;
+					default:
+						break;
+				}
 			}
 		}
 	}
