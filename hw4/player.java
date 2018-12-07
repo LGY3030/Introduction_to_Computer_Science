@@ -30,7 +30,7 @@ public class player {
 	}
 	public void drawcard(int round) {
 		if(round==1) {
-			for(int i=0;i<5;i++) {
+			for(int i=0;i<6;i++) {
 				cards.add(allcards.get(0));
 				allcards.remove(0);
 			}

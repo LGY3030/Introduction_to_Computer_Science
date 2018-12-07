@@ -38,17 +38,17 @@ public class hw4 {
 						break;
 					}
 					else if(instruction[0].equals("select")) {
-						createcardobject(1,instruction[1],Integer.parseInt(instruction[2].substring(1)),instruction[3],round);
+						createcardobject(1,instruction[1],Integer.parseInt(instruction[2].substring(1)),instruction[3]);
 					}
 					else if(instruction[0].equals("change")) {
 						changestatus(1,Integer.parseInt(instruction[1].substring(1)));
 					}
 					else {
 						if(instruction[2].equals("enemy")) {
-							
+							attackenemy(Integer.parseInt(instruction[0].substring(1)));
 						}
 						else {
-							attackcard(Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),instruction[2].substring(0,1));
+							attackcard(Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
 						}
 					}
 					instruction=scanner.next().split(" ");
@@ -56,7 +56,14 @@ public class hw4 {
 			}
 			else {
 				while(true) {
-					break;
+					player2.drawcard(round);
+					if(instruction[0].equals("finish")) {
+						roundflag=1;
+						break;
+					}
+					else if(instruction[0].equals("select")) {
+						createcardobject(2,instruction[1],Integer.parseInt(instruction[2].substring(1)),instruction[3],round);
+					}
 				}
 				round+=1;
 				changeAttackFlagAndAction();
@@ -65,7 +72,107 @@ public class hw4 {
 			}
 		}
 	}
-
+	private static void attackenemy(int offend) {
+		int offendattack=0;
+		int stopflag=0;
+		if(player1areahint[offend-1].length()==2) {
+			switch(player1areahint[offend-1]) {
+				case "A1":
+					if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
+						offendattack=((A1)player1area[offend-1]).attack;
+						((A1)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "A2":
+					if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
+						offendattack=((A2)player1area[offend-1]).attack;
+						((A2)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "B1":
+					if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
+						offendattack=((B1)player1area[offend-1]).attack;
+						((B1)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "B2":
+					if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
+						offendattack=((B2)player1area[offend-1]).attack;
+						((B2)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "C1":
+					if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
+						offendattack=((C1)player1area[offend-1]).attack;
+						((C1)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "C2":
+					if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
+						offendattack=((C2)player1area[offend-1]).attack;
+						((C2)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "D1":
+					if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
+						offendattack=((D1)player1area[offend-1]).attack;
+						((D1)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "D2":
+					if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
+						offendattack=((D2)player1area[offend-1]).attack;
+						((D2)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				case "E1":
+					if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
+						offendattack=((E1)player1area[offend-1]).attack;
+						((E1)player1area[offend-1]).action=1;
+					}
+					else {
+						System.out.println("µLªk§ðÀ»");
+						stopflag=1;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		player2.health-=offendattack;
+	}
 	private static void attackcard(int offend, int defend, String hint) {
 		int offendattack=0;
 		int defendattack=0;
@@ -75,6 +182,7 @@ public class hw4 {
 				case "A1":
 					if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
 						offendattack=((A1)player1area[offend-1]).attack(hint);
+						((A1)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -84,6 +192,7 @@ public class hw4 {
 				case "A2":
 					if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
 						offendattack=((A2)player1area[offend-1]).attack(hint);
+						((A2)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -93,6 +202,7 @@ public class hw4 {
 				case "B1":
 					if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
 						offendattack=((B1)player1area[offend-1]).attack(hint);
+						((B1)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -102,6 +212,7 @@ public class hw4 {
 				case "B2":
 					if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
 						offendattack=((B2)player1area[offend-1]).attack(hint);
+						((B2)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -111,6 +222,7 @@ public class hw4 {
 				case "C1":
 					if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
 						offendattack=((C1)player1area[offend-1]).attack(hint);
+						((C1)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -120,6 +232,7 @@ public class hw4 {
 				case "C2":
 					if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
 						offendattack=((C2)player1area[offend-1]).attack(hint);
+						((C2)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -129,6 +242,7 @@ public class hw4 {
 				case "D1":
 					if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
 						offendattack=((D1)player1area[offend-1]).attack(hint);
+						((D1)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -138,6 +252,7 @@ public class hw4 {
 				case "D2":
 					if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
 						offendattack=((D2)player1area[offend-1]).attack(hint);
+						((D2)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -147,6 +262,7 @@ public class hw4 {
 				case "E1":
 					if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
 						offendattack=((E1)player1area[offend-1]).attack(hint);
+						((E1)player1area[offend-1]).action=1;
 					}
 					else {
 						System.out.println("µLªk§ðÀ»");
@@ -629,7 +745,7 @@ public class hw4 {
 		}
 	}
 
-	private static void createcardobject(int player,String card,int place,String status,int round) {
+	private static void createcardobject(int player,String card,int place,String status) {
 		int statusnum=0;
 		if(status.equals("attack")) {
 			statusnum=1;
