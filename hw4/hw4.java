@@ -8,11 +8,11 @@ public class hw4 {
 	private static String[] player2areahint=new String[6];
 	private static player player1=new player("player1");
 	private static player player2=new player("player2");
+	private static int roundflag=1;
 	public static void main(String[] args) {
 		
-		int roundflag=1;
+		
 		int round=1;
-		String[] getname;
 		String[] instruction;
 		for(int i=0;i<6;i++) {
 			player1area[i]=null;
@@ -22,11 +22,12 @@ public class hw4 {
 		}
 		Scanner scanner=new Scanner(System.in);
 		System.out.println("輸入玩家名稱:");
-		getname=scanner.next().split(" ");
+		String[] getname=scanner.nextLine().split(" ");
 		player1.name=getname[0];
 		player2.name=getname[1];
 		while(true) {
-			instruction=scanner.next().split(" ");
+			//show();
+			instruction=scanner.nextLine().split(" ");
 			if(instruction[0].equals("exit")) {
 				break;
 			}
@@ -45,13 +46,14 @@ public class hw4 {
 					}
 					else {
 						if(instruction[2].equals("enemy")) {
-							attackenemy(Integer.parseInt(instruction[0].substring(1)));
+							attackenemy(1,Integer.parseInt(instruction[0].substring(1)));
 						}
 						else {
-							attackcard(Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
+							attackcard(1,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
 						}
 					}
-					instruction=scanner.next().split(" ");
+					show();
+					instruction=scanner.nextLine().split(" ");
 				}
 			}
 			else {
@@ -62,295 +64,1015 @@ public class hw4 {
 						break;
 					}
 					else if(instruction[0].equals("select")) {
-						createcardobject(2,instruction[1],Integer.parseInt(instruction[2].substring(1)),instruction[3],round);
+						createcardobject(2,instruction[1],Integer.parseInt(instruction[2].substring(1)),instruction[3]);
 					}
+					else if(instruction[0].equals("change")) {
+						changestatus(2,Integer.parseInt(instruction[1].substring(1)));
+					}
+					else {
+						if(instruction[2].equals("enemy")) {
+							attackenemy(2,Integer.parseInt(instruction[0].substring(1)));
+						}
+						else {
+							attackcard(2,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
+						}
+					}
+					show();
 				}
 				round+=1;
 				changeAttackFlagAndAction();
 				player1.crystal=round;
 				player2.crystal=round;
+				instruction=scanner.nextLine().split(" ");
 			}
 		}
 	}
-	private static void attackenemy(int offend) {
-		int offendattack=0;
-		int stopflag=0;
-		if(player1areahint[offend-1].length()==2) {
-			switch(player1areahint[offend-1]) {
-				case "A1":
-					if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
-						offendattack=((A1)player1area[offend-1]).attack;
-						((A1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "A2":
-					if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
-						offendattack=((A2)player1area[offend-1]).attack;
-						((A2)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "B1":
-					if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
-						offendattack=((B1)player1area[offend-1]).attack;
-						((B1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "B2":
-					if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
-						offendattack=((B2)player1area[offend-1]).attack;
-						((B2)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "C1":
-					if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
-						offendattack=((C1)player1area[offend-1]).attack;
-						((C1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "C2":
-					if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
-						offendattack=((C2)player1area[offend-1]).attack;
-						((C2)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "D1":
-					if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
-						offendattack=((D1)player1area[offend-1]).attack;
-						((D1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "D2":
-					if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
-						offendattack=((D2)player1area[offend-1]).attack;
-						((D2)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "E1":
-					if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
-						offendattack=((E1)player1area[offend-1]).attack;
-						((E1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				default:
-					break;
-			}
+	private static void show() {
+		System.out.println("");
+		System.out.println("=====================================================");
+		System.out.println("");
+		System.out.println("-----------------------------------------------------");
+		if(roundflag==1) {
+			System.out.println("Crystal-"+player1.crystal);
+			System.out.println(player1.name+"'s turn");
 		}
-		player2.health-=offendattack;
-	}
-	private static void attackcard(int offend, int defend, String hint) {
-		int offendattack=0;
-		int defendattack=0;
-		int stopflag=0;
-		if(player1areahint[offend-1].length()==2) {
-			switch(player1areahint[offend-1]) {
-				case "A1":
-					if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
-						offendattack=((A1)player1area[offend-1]).attack(hint);
-						((A1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "A2":
-					if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
-						offendattack=((A2)player1area[offend-1]).attack(hint);
-						((A2)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "B1":
-					if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
-						offendattack=((B1)player1area[offend-1]).attack(hint);
-						((B1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "B2":
-					if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
-						offendattack=((B2)player1area[offend-1]).attack(hint);
-						((B2)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "C1":
-					if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
-						offendattack=((C1)player1area[offend-1]).attack(hint);
-						((C1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "C2":
-					if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
-						offendattack=((C2)player1area[offend-1]).attack(hint);
-						((C2)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "D1":
-					if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
-						offendattack=((D1)player1area[offend-1]).attack(hint);
-						((D1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "D2":
-					if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
-						offendattack=((D2)player1area[offend-1]).attack(hint);
-						((D2)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				case "E1":
-					if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
-						offendattack=((E1)player1area[offend-1]).attack(hint);
-						((E1)player1area[offend-1]).action=1;
-					}
-					else {
-						System.out.println("無法攻擊");
-						stopflag=1;
-					}
-					break;
-				default:
-					break;
-			}
+		else {
+			System.out.println("Crystal-"+player2.crystal);
+			System.out.println(player2.name+"'s turn");
 		}
-		if(stopflag==0) {
-			
-			if(player2areahint[defend-1].length()==2) {
-				switch(player2areahint[defend-1]) {
-					case "A1":
-						defendattack=((A1)player2area[defend-1]).attack;
-						((A1)player2area[defend-1]).health-=offendattack;
-						break;
-					case "A2":
-						defendattack=((A2)player2area[defend-1]).attack;
-						((A2)player2area[defend-1]).health-=offendattack;
-						break;
-					case "B1":
-						defendattack=((B1)player2area[defend-1]).attack;
-						((B1)player2area[defend-1]).health-=offendattack;
-						break;
-					case "B2":
-						defendattack=((B2)player2area[defend-1]).attack;
-						((B2)player2area[defend-1]).health-=offendattack;
-						break;
-					case "C1":
-						defendattack=((C1)player2area[defend-1]).attack;
-						((C1)player2area[defend-1]).health-=offendattack;
-						break;
-					case "C2":
-						defendattack=((C2)player2area[defend-1]).attack;
-						((C2)player2area[defend-1]).health-=offendattack;
-						break;
-					case "D1":
-						defendattack=((D1)player2area[defend-1]).attack;
-						((D1)player2area[defend-1]).health-=offendattack;
-						break;
-					case "D2":
-						defendattack=((D2)player2area[defend-1]).attack;
-						((D2)player2area[defend-1]).health-=offendattack;
-						break;
-					case "E1":
-						defendattack=((E1)player2area[defend-1]).attack;
-						((E1)player2area[defend-1]).health-=offendattack;
-						break;
-					default:
-						break;
+		System.out.println("-----------------------------------------------------");
+		if(roundflag==1) {
+			System.out.println(player1.name);
+			System.out.println("HP: "+player1.health);
+			System.out.print("Cards: ");
+			for(int i=0;i<player1.cards.size();i++) {
+				if(i==player1.cards.size()-1) {
+					System.out.print(player1.cards.get(i));
+				}
+				else {
+					System.out.print(player1.cards.get(i)+",");
 				}
 			}
+			System.out.println("");
+		}
+		else {
+			System.out.println(player1.name);
+			System.out.println("HP: "+player1.health);
+			System.out.println("Cards Number: "+player1.cards.size());
+		}
+		System.out.println("-----------------------------------------------------");
+		for(int i=1;i<=6;i++) {
+			System.out.printf("U%-19d",i);
+		}
+		System.out.println("");
+		for(int i=0;i<6;i++) {
+			if(player1areahint[i].length()==2) {
+				System.out.printf("ID: -16%s",player1areahint[i]);
+			}
+			else {
+				System.out.print("                    ");
+			}
+		}
+		System.out.println("");
+		for(int i=0;i<6;i++) {
+			if(player1areahint[i].length()==2) {
+				System.out.printf("ATK: -3%d",getattack(1,i));
+				System.out.printf("HP: -8%d",gethealth(1,i));
+			}
+			else {
+				System.out.print("                    ");
+			}
+		}
+		System.out.println("");
+		for(int i=0;i<6;i++) {
+			if(player1areahint[i].length()==2) {
+				System.out.printf("State: -13%d",getstate(1,i));
+			}
+			else {
+				System.out.print("                    ");
+			}
+		}
+		System.out.println("");
+		System.out.println("-----------------------------------------------------");
+		for(int i=1;i<=6;i++) {
+			System.out.printf("D%-19d",i);
+		}
+		System.out.println("");
+		for(int i=0;i<6;i++) {
+			if(player2areahint[i].length()==2) {
+				System.out.printf("ID: -16%s",player2areahint[i]);
+			}
+			else {
+				System.out.print("                    ");
+			}
+		}
+		System.out.println("");
+		for(int i=0;i<6;i++) {
+			if(player2areahint[i].length()==2) {
+				System.out.printf("ATK: -3%d",getattack(2,i));
+				System.out.printf("HP: -8%d",gethealth(2,i));
+			}
+			else {
+				System.out.print("                    ");
+			}
+		}
+		System.out.println("");
+		for(int i=0;i<6;i++) {
+			if(player2areahint[i].length()==2) {
+				System.out.printf("State: -13%d",getstate(2,i));
+			}
+			else {
+				System.out.print("                    ");
+			}
+		}
+		System.out.println("");
+		System.out.println("-----------------------------------------------------");
+		if(roundflag==1) {
+			System.out.println(player2.name);
+			System.out.println("HP: "+player2.health);
+			System.out.println("Cards Number: "+player2.cards.size());
+		}
+		else {
+			System.out.println(player2.name);
+			System.out.println("HP: "+player2.health);
+			System.out.print("Cards: ");
+			for(int i=0;i<player2.cards.size();i++) {
+				if(i==player2.cards.size()-1) {
+					System.out.print(player2.cards.get(i));
+				}
+				else {
+					System.out.print(player2.cards.get(i)+",");
+				}
+			}
+			System.out.println("");
+		}
+		System.out.println("-----------------------------------------------------");
+		
+	}
+	private static String getstate(int player, int i) {
+		String state="";
+		if(player==1) {
+			switch(player1areahint[i]) {
+				case "A1":
+					if(((A1)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "A2":
+					if(((A2)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "B1":
+					if(((B1)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "B2":
+					if(((B2)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "C1":
+					if(((C1)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "C2":
+					if(((C2)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "D1":
+					if(((D1)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "D2":
+					if(((D2)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "E1":
+					if(((E1)player1area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		else {
+			switch(player2areahint[i]) {
+				case "A1":
+					if(((A1)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "A2":
+					if(((A2)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "B1":
+					if(((B1)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "B2":
+					if(((B2)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "C1":
+					if(((C1)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "C2":
+					if(((C2)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "D1":
+					if(((D1)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "D2":
+					if(((D2)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				case "E1":
+					if(((E1)player2area[i]).status==1){
+						state="attack";
+					}
+					else {
+						state="defense";
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		return state;
+	}
+	private static int gethealth(int player,int i) {
+		int health=0;
+		if(player==1) {
+			switch(player1areahint[i]) {
+				case "A1":
+					health=((A1)player1area[i]).health;
+					break;
+				case "A2":
+					health=((A2)player1area[i]).health;
+					break;
+				case "B1":
+					health=((B1)player1area[i]).health;
+					break;
+				case "B2":
+					health=((B2)player1area[i]).health;
+					break;
+				case "C1":
+					health=((C1)player1area[i]).health;
+					break;
+				case "C2":
+					health=((C2)player1area[i]).health;
+					break;
+				case "D1":
+					health=((D1)player1area[i]).health;
+					break;
+				case "D2":
+					health=((D2)player1area[i]).health;
+					break;
+				case "E1":
+					health=((E1)player1area[i]).health;
+					break;
+				default:
+					break;
+			}
+		}
+		else {
+			switch(player2areahint[i]) {
+				case "A1":
+					health=((A1)player2area[i]).health;
+					break;
+				case "A2":
+					health=((A2)player2area[i]).health;
+					break;
+				case "B1":
+					health=((B1)player2area[i]).health;
+					break;
+				case "B2":
+					health=((B2)player2area[i]).health;
+					break;
+				case "C1":
+					health=((C1)player2area[i]).health;
+					break;
+				case "C2":
+					health=((C2)player2area[i]).health;
+					break;
+				case "D1":
+					health=((D1)player2area[i]).health;
+					break;
+				case "D2":
+					health=((D2)player2area[i]).health;
+					break;
+				case "E1":
+					health=((E1)player2area[i]).health;
+					break;
+				default:
+					break;
+			}
+		}
+		return health;
+	}
+	private static int getattack(int player,int i) {
+		int attack=0;
+		if(player==1) {
+			switch(player1areahint[i]) {
+				case "A1":
+					attack=((A1)player1area[i]).attack;
+					break;
+				case "A2":
+					attack=((A2)player1area[i]).attack;
+					break;
+				case "B1":
+					attack=((B1)player1area[i]).attack;
+					break;
+				case "B2":
+					attack=((B2)player1area[i]).attack;
+					break;
+				case "C1":
+					attack=((C1)player1area[i]).attack;
+					break;
+				case "C2":
+					attack=((C2)player1area[i]).attack;
+					break;
+				case "D1":
+					attack=((D1)player1area[i]).attack;
+					break;
+				case "D2":
+					attack=((D2)player1area[i]).attack;
+					break;
+				case "E1":
+					attack=((E1)player1area[i]).attack;
+					break;
+				default:
+					break;
+			}
+		}
+		else {
+			switch(player2areahint[i]) {
+				case "A1":
+					attack=((A1)player2area[i]).attack;
+					break;
+				case "A2":
+					attack=((A2)player2area[i]).attack;
+					break;
+				case "B1":
+					attack=((B1)player2area[i]).attack;
+					break;
+				case "B2":
+					attack=((B2)player2area[i]).attack;
+					break;
+				case "C1":
+					attack=((C1)player2area[i]).attack;
+					break;
+				case "C2":
+					attack=((C2)player2area[i]).attack;
+					break;
+				case "D1":
+					attack=((D1)player2area[i]).attack;
+					break;
+				case "D2":
+					attack=((D2)player2area[i]).attack;
+					break;
+				case "E1":
+					attack=((E1)player2area[i]).attack;
+					break;
+				default:
+					break;
+			}
+		}
+		return attack;
+	}
+
+	private static void attackenemy(int player,int offend) {
+		int offendattack=0;
+		int stopflag=0;
+		if(player==1) {
 			if(player1areahint[offend-1].length()==2) {
 				switch(player1areahint[offend-1]) {
 					case "A1":
-						((A1)player1area[offend-1]).health-=defendattack;
+						if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
+							offendattack=((A1)player1area[offend-1]).attack;
+							((A1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					case "A2":
-						((A2)player1area[offend-1]).health-=defendattack;
+						if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
+							offendattack=((A2)player1area[offend-1]).attack;
+							((A2)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					case "B1":
-						((B1)player1area[offend-1]).health-=defendattack;
+						if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
+							offendattack=((B1)player1area[offend-1]).attack;
+							((B1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					case "B2":
-						((B2)player1area[offend-1]).health-=defendattack;
+						if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
+							offendattack=((B2)player1area[offend-1]).attack;
+							((B2)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					case "C1":
-						((C1)player1area[offend-1]).health-=defendattack;
+						if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
+							offendattack=((C1)player1area[offend-1]).attack;
+							((C1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					case "C2":
-						((C2)player1area[offend-1]).health-=defendattack;
+						if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
+							offendattack=((C2)player1area[offend-1]).attack;
+							((C2)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					case "D1":
-						((D1)player1area[offend-1]).health-=defendattack;
+						if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
+							offendattack=((D1)player1area[offend-1]).attack;
+							((D1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					case "D2":
-						((D2)player1area[offend-1]).health-=defendattack;
+						if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
+							offendattack=((D2)player1area[offend-1]).attack;
+							((D2)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					case "E1":
-						((E1)player1area[offend-1]).health-=defendattack;
+						if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
+							offendattack=((E1)player1area[offend-1]).attack;
+							((E1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
 						break;
 					default:
 						break;
 				}
 			}
-			checkdead();
+			if(stopflag==0) {
+				player2.health-=offendattack;
+			}	
+		}
+		else {
+			if(player2areahint[offend-1].length()==2) {
+				switch(player2areahint[offend-1]) {
+					case "A1":
+						if(((A1)player2area[offend-1]).action==0&&((A1)player2area[offend-1]).attackflag==1) {
+							offendattack=((A1)player2area[offend-1]).attack;
+							((A1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "A2":
+						if(((A2)player2area[offend-1]).action==0&&((A2)player2area[offend-1]).attackflag==1) {
+							offendattack=((A2)player2area[offend-1]).attack;
+							((A2)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "B1":
+						if(((B1)player2area[offend-1]).action==0&&((B1)player2area[offend-1]).attackflag==1) {
+							offendattack=((B1)player2area[offend-1]).attack;
+							((B1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "B2":
+						if(((B2)player2area[offend-1]).action==0&&((B2)player2area[offend-1]).attackflag==1) {
+							offendattack=((B2)player2area[offend-1]).attack;
+							((B2)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "C1":
+						if(((C1)player2area[offend-1]).action==0&&((C1)player2area[offend-1]).attackflag==1) {
+							offendattack=((C1)player2area[offend-1]).attack;
+							((C1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "C2":
+						if(((C2)player2area[offend-1]).action==0&&((C2)player2area[offend-1]).attackflag==1) {
+							offendattack=((C2)player2area[offend-1]).attack;
+							((C2)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "D1":
+						if(((D1)player2area[offend-1]).action==0&&((D1)player2area[offend-1]).attackflag==1) {
+							offendattack=((D1)player2area[offend-1]).attack;
+							((D1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "D2":
+						if(((D2)player2area[offend-1]).action==0&&((D2)player2area[offend-1]).attackflag==1) {
+							offendattack=((D2)player2area[offend-1]).attack;
+							((D2)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "E1":
+						if(((E1)player2area[offend-1]).action==0&&((E1)player2area[offend-1]).attackflag==1) {
+							offendattack=((E1)player2area[offend-1]).attack;
+							((E1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					default:
+						break;
+				}
+			}
+			if(stopflag==0) {
+				player1.health-=offendattack;
+			}
+		}
+	}
+	private static void attackcard(int player,int offend, int defend, String hint) {
+		int offendattack=0;
+		int defendattack=0;
+		int stopflag=0;
+		if(player==1) {
+			if(player1areahint[offend-1].length()==2) {
+				switch(player1areahint[offend-1]) {
+					case "A1":
+						if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
+							offendattack=((A1)player1area[offend-1]).attack(hint);
+							((A1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "A2":
+						if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
+							offendattack=((A2)player1area[offend-1]).attack(hint);
+							((A2)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "B1":
+						if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
+							offendattack=((B1)player1area[offend-1]).attack(hint);
+							((B1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "B2":
+						if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
+							offendattack=((B2)player1area[offend-1]).attack(hint);
+							((B2)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "C1":
+						if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
+							offendattack=((C1)player1area[offend-1]).attack(hint);
+							((C1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "C2":
+						if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
+							offendattack=((C2)player1area[offend-1]).attack(hint);
+							((C2)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "D1":
+						if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
+							offendattack=((D1)player1area[offend-1]).attack(hint);
+							((D1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "D2":
+						if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
+							offendattack=((D2)player1area[offend-1]).attack(hint);
+							((D2)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "E1":
+						if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
+							offendattack=((E1)player1area[offend-1]).attack(hint);
+							((E1)player1area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					default:
+						break;
+				}
+			}
+			if(stopflag==0) {
+				
+				if(player2areahint[defend-1].length()==2) {
+					switch(player2areahint[defend-1]) {
+						case "A1":
+							defendattack=((A1)player2area[defend-1]).attack;
+							((A1)player2area[defend-1]).health-=offendattack;
+							break;
+						case "A2":
+							defendattack=((A2)player2area[defend-1]).attack;
+							((A2)player2area[defend-1]).health-=offendattack;
+							break;
+						case "B1":
+							defendattack=((B1)player2area[defend-1]).attack;
+							((B1)player2area[defend-1]).health-=offendattack;
+							break;
+						case "B2":
+							defendattack=((B2)player2area[defend-1]).attack;
+							((B2)player2area[defend-1]).health-=offendattack;
+							break;
+						case "C1":
+							defendattack=((C1)player2area[defend-1]).attack;
+							((C1)player2area[defend-1]).health-=offendattack;
+							break;
+						case "C2":
+							defendattack=((C2)player2area[defend-1]).attack;
+							((C2)player2area[defend-1]).health-=offendattack;
+							break;
+						case "D1":
+							defendattack=((D1)player2area[defend-1]).attack;
+							((D1)player2area[defend-1]).health-=offendattack;
+							break;
+						case "D2":
+							defendattack=((D2)player2area[defend-1]).attack;
+							((D2)player2area[defend-1]).health-=offendattack;
+							break;
+						case "E1":
+							defendattack=((E1)player2area[defend-1]).attack;
+							((E1)player2area[defend-1]).health-=offendattack;
+							break;
+						default:
+							break;
+					}
+				}
+				if(player1areahint[offend-1].length()==2) {
+					switch(player1areahint[offend-1]) {
+						case "A1":
+							((A1)player1area[offend-1]).health-=defendattack;
+							break;
+						case "A2":
+							((A2)player1area[offend-1]).health-=defendattack;
+							break;
+						case "B1":
+							((B1)player1area[offend-1]).health-=defendattack;
+							break;
+						case "B2":
+							((B2)player1area[offend-1]).health-=defendattack;
+							break;
+						case "C1":
+							((C1)player1area[offend-1]).health-=defendattack;
+							break;
+						case "C2":
+							((C2)player1area[offend-1]).health-=defendattack;
+							break;
+						case "D1":
+							((D1)player1area[offend-1]).health-=defendattack;
+							break;
+						case "D2":
+							((D2)player1area[offend-1]).health-=defendattack;
+							break;
+						case "E1":
+							((E1)player1area[offend-1]).health-=defendattack;
+							break;
+						default:
+							break;
+					}
+				}
+				checkdead();
+			}
+		}
+		else {
+			if(player2areahint[offend-1].length()==2) {
+				switch(player2areahint[offend-1]) {
+					case "A1":
+						if(((A1)player2area[offend-1]).action==0&&((A1)player2area[offend-1]).attackflag==1) {
+							offendattack=((A1)player2area[offend-1]).attack(hint);
+							((A1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "A2":
+						if(((A2)player2area[offend-1]).action==0&&((A2)player2area[offend-1]).attackflag==1) {
+							offendattack=((A2)player2area[offend-1]).attack(hint);
+							((A2)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "B1":
+						if(((B1)player2area[offend-1]).action==0&&((B1)player2area[offend-1]).attackflag==1) {
+							offendattack=((B1)player2area[offend-1]).attack(hint);
+							((B1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "B2":
+						if(((B2)player2area[offend-1]).action==0&&((B2)player2area[offend-1]).attackflag==1) {
+							offendattack=((B2)player2area[offend-1]).attack(hint);
+							((B2)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "C1":
+						if(((C1)player2area[offend-1]).action==0&&((C1)player2area[offend-1]).attackflag==1) {
+							offendattack=((C1)player2area[offend-1]).attack(hint);
+							((C1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "C2":
+						if(((C2)player2area[offend-1]).action==0&&((C2)player2area[offend-1]).attackflag==1) {
+							offendattack=((C2)player2area[offend-1]).attack(hint);
+							((C2)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "D1":
+						if(((D1)player2area[offend-1]).action==0&&((D1)player2area[offend-1]).attackflag==1) {
+							offendattack=((D1)player2area[offend-1]).attack(hint);
+							((D1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "D2":
+						if(((D2)player2area[offend-1]).action==0&&((D2)player2area[offend-1]).attackflag==1) {
+							offendattack=((D2)player2area[offend-1]).attack(hint);
+							((D2)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					case "E1":
+						if(((E1)player2area[offend-1]).action==0&&((E1)player2area[offend-1]).attackflag==1) {
+							offendattack=((E1)player2area[offend-1]).attack(hint);
+							((E1)player2area[offend-1]).action=1;
+						}
+						else {
+							System.out.println("無法攻擊");
+							stopflag=1;
+						}
+						break;
+					default:
+						break;
+				}
+			}
+			if(stopflag==0) {
+				
+				if(player1areahint[defend-1].length()==2) {
+					switch(player1areahint[defend-1]) {
+						case "A1":
+							defendattack=((A1)player1area[defend-1]).attack;
+							((A1)player1area[defend-1]).health-=offendattack;
+							break;
+						case "A2":
+							defendattack=((A2)player1area[defend-1]).attack;
+							((A2)player1area[defend-1]).health-=offendattack;
+							break;
+						case "B1":
+							defendattack=((B1)player1area[defend-1]).attack;
+							((B1)player1area[defend-1]).health-=offendattack;
+							break;
+						case "B2":
+							defendattack=((B2)player1area[defend-1]).attack;
+							((B2)player1area[defend-1]).health-=offendattack;
+							break;
+						case "C1":
+							defendattack=((C1)player1area[defend-1]).attack;
+							((C1)player1area[defend-1]).health-=offendattack;
+							break;
+						case "C2":
+							defendattack=((C2)player1area[defend-1]).attack;
+							((C2)player1area[defend-1]).health-=offendattack;
+							break;
+						case "D1":
+							defendattack=((D1)player1area[defend-1]).attack;
+							((D1)player1area[defend-1]).health-=offendattack;
+							break;
+						case "D2":
+							defendattack=((D2)player1area[defend-1]).attack;
+							((D2)player1area[defend-1]).health-=offendattack;
+							break;
+						case "E1":
+							defendattack=((E1)player1area[defend-1]).attack;
+							((E1)player1area[defend-1]).health-=offendattack;
+							break;
+						default:
+							break;
+					}
+				}
+				if(player2areahint[offend-1].length()==2) {
+					switch(player2areahint[offend-1]) {
+						case "A1":
+							((A1)player2area[offend-1]).health-=defendattack;
+							break;
+						case "A2":
+							((A2)player2area[offend-1]).health-=defendattack;
+							break;
+						case "B1":
+							((B1)player2area[offend-1]).health-=defendattack;
+							break;
+						case "B2":
+							((B2)player2area[offend-1]).health-=defendattack;
+							break;
+						case "C1":
+							((C1)player2area[offend-1]).health-=defendattack;
+							break;
+						case "C2":
+							((C2)player2area[offend-1]).health-=defendattack;
+							break;
+						case "D1":
+							((D1)player2area[offend-1]).health-=defendattack;
+							break;
+						case "D2":
+							((D2)player2area[offend-1]).health-=defendattack;
+							break;
+						case "E1":
+							((E1)player2area[offend-1]).health-=defendattack;
+							break;
+						default:
+							break;
+					}
+				}
+				checkdead();
+			}
 		}
 	}
 
