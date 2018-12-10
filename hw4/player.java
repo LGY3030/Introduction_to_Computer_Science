@@ -29,8 +29,14 @@ public class player {
 		}
 	}
 	public void drawcard(int round) {
-		if(round==1) {
-			for(int i=0;i<6;i++) {
+		if(round==100){
+			for(int i=0;i<5;i++) {
+				cards.add(allcards.get(0));
+				allcards.remove(0);
+			}
+		}
+		else if(round==1) {
+			for(int i=0;i<1;i++) {
 				cards.add(allcards.get(0));
 				allcards.remove(0);
 			}

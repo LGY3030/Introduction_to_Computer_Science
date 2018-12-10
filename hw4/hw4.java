@@ -11,7 +11,7 @@ public class hw4 {
 	private static int roundflag=1;
 	public static void main(String[] args) {
 		
-		
+		int exit=0;
 		int round=1;
 		String[] instruction;
 		for(int i=0;i<6;i++) {
@@ -25,16 +25,24 @@ public class hw4 {
 		String[] getname=scanner.nextLine().split(" ");
 		player1.name=getname[0];
 		player2.name=getname[1];
+		player1.drawcard(100);
+		player2.drawcard(100);
 		while(true) {
-			//show();
-			instruction=scanner.nextLine().split(" ");
-			if(instruction[0].equals("exit")) {
+			if(exit==1){
 				break;
 			}
 			if(roundflag==1) {
 				while(true) {
 					player1.drawcard(round);
-					if(instruction[0].equals("finish")) {
+					show();
+					System.out.println("");
+					System.out.println("«ü¥O:");
+					instruction=scanner.nextLine().split(" ");
+					if(instruction[0].equals("exit")) {
+						exit=1;
+						break;
+					}
+					else if(instruction[0].equals("finish")) {
 						roundflag=2;
 						break;
 					}
@@ -52,14 +60,20 @@ public class hw4 {
 							attackcard(1,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
 						}
 					}
-					show();
-					instruction=scanner.nextLine().split(" ");
 				}
 			}
 			else {
 				while(true) {
 					player2.drawcard(round);
-					if(instruction[0].equals("finish")) {
+					show();
+					System.out.println("");
+					System.out.println("«ü¥O:");
+					instruction=scanner.nextLine().split(" ");
+					if(instruction[0].equals("exit")) {
+						exit=1;
+						break;
+					}
+					else if(instruction[0].equals("finish")) {
 						roundflag=1;
 						break;
 					}
@@ -77,19 +91,18 @@ public class hw4 {
 							attackcard(2,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
 						}
 					}
-					show();
 				}
 				round+=1;
 				changeAttackFlagAndAction();
 				player1.crystal=round;
 				player2.crystal=round;
-				instruction=scanner.nextLine().split(" ");
 			}
 		}
 	}
 	private static void show() {
 		System.out.println("");
 		System.out.println("=====================================================");
+		System.out.println("");
 		System.out.println("");
 		System.out.println("-----------------------------------------------------");
 		if(roundflag==1) {
@@ -121,68 +134,132 @@ public class hw4 {
 			System.out.println("Cards Number: "+player1.cards.size());
 		}
 		System.out.println("-----------------------------------------------------");
-		for(int i=1;i<=6;i++) {
+		for(int i=1;i<=4;i++) {
 			System.out.printf("U%-19d",i);
 		}
 		System.out.println("");
-		for(int i=0;i<6;i++) {
+		for(int i=0;i<4;i++) {
 			if(player1areahint[i].length()==2) {
-				System.out.printf("ID: -16%s",player1areahint[i]);
+				System.out.printf("ID: %-16s",player1areahint[i]);
 			}
 			else {
-				System.out.print("                    ");
+				System.out.print("");
 			}
 		}
 		System.out.println("");
-		for(int i=0;i<6;i++) {
+		for(int i=0;i<4;i++) {
 			if(player1areahint[i].length()==2) {
-				System.out.printf("ATK: -3%d",getattack(1,i));
-				System.out.printf("HP: -8%d",gethealth(1,i));
+				System.out.printf("ATK: %-3d",getattack(1,i));
+				System.out.printf("HP: %-8d",gethealth(1,i));
 			}
 			else {
-				System.out.print("                    ");
+				System.out.print("");
 			}
 		}
 		System.out.println("");
-		for(int i=0;i<6;i++) {
+		for(int i=0;i<4;i++) {
 			if(player1areahint[i].length()==2) {
-				System.out.printf("State: -13%d",getstate(1,i));
+				System.out.printf("State: %-13d",getstate(1,i));
 			}
 			else {
-				System.out.print("                    ");
+				System.out.print("");
+			}
+		}
+		System.out.println("");
+		for(int i=5;i<=6;i++) {
+			System.out.printf("U%-19d",i);
+		}
+		System.out.println("");
+		for(int i=4;i<6;i++) {
+			if(player1areahint[i].length()==2) {
+				System.out.printf("ID: %-16s",player1areahint[i]);
+			}
+			else {
+				System.out.print("");
+			}
+		}
+		System.out.println("");
+		for(int i=4;i<6;i++) {
+			if(player1areahint[i].length()==2) {
+				System.out.printf("ATK: %-3d",getattack(1,i));
+				System.out.printf("HP: %-8d",gethealth(1,i));
+			}
+			else {
+				System.out.print("");
+			}
+		}
+		System.out.println("");
+		for(int i=4;i<6;i++) {
+			if(player1areahint[i].length()==2) {
+				System.out.printf("State: %-13d",getstate(1,i));
+			}
+			else {
+				System.out.print("");
 			}
 		}
 		System.out.println("");
 		System.out.println("-----------------------------------------------------");
-		for(int i=1;i<=6;i++) {
+		for(int i=1;i<=4;i++) {
 			System.out.printf("D%-19d",i);
 		}
 		System.out.println("");
-		for(int i=0;i<6;i++) {
+		for(int i=0;i<4;i++) {
 			if(player2areahint[i].length()==2) {
-				System.out.printf("ID: -16%s",player2areahint[i]);
+				System.out.printf("ID: %-16s",player2areahint[i]);
 			}
 			else {
-				System.out.print("                    ");
+				System.out.print("");
 			}
 		}
 		System.out.println("");
-		for(int i=0;i<6;i++) {
+		for(int i=0;i<4;i++) {
 			if(player2areahint[i].length()==2) {
-				System.out.printf("ATK: -3%d",getattack(2,i));
-				System.out.printf("HP: -8%d",gethealth(2,i));
+				System.out.printf("ATK: %-3d",getattack(2,i));
+				System.out.printf("HP: %-8d",gethealth(2,i));
 			}
 			else {
-				System.out.print("                    ");
+				System.out.print("");
 			}
 		}
 		System.out.println("");
-		for(int i=0;i<6;i++) {
+		for(int i=0;i<4;i++) {
 			if(player2areahint[i].length()==2) {
-				System.out.printf("State: -13%d",getstate(2,i));
+				System.out.printf("State: %-13d",getstate(2,i));
 			}
 			else {
-				System.out.print("                    ");
+				System.out.print("");
+			}
+		}
+		System.out.println("");
+		for(int i=5;i<=6;i++) {
+			System.out.printf("D%-19d",i);
+		}
+		System.out.println("");
+		for(int i=4;i<6;i++) {
+			if(player2areahint[i].length()==2) {
+				System.out.printf("ID: %-16s",player2areahint[i]);
+			}
+			else {
+				System.out.print("");
+			}
+		}
+		System.out.println("");
+		for(int i=4;i<6;i++) {
+			if(player2areahint[i].length()==2) {
+				System.out.printf("ATK: %-3d",getattack(2,i));
+				System.out.printf("HP: %-8d",gethealth(2,i));
+			}
+			else {
+				System.out.print("");
+			}
+		}
+		System.out.println("");
+		for(int i=4;i<6;i++) {
+			if(player2areahint[i].length()==2) {
+				System.out.printf("State: %-13d",getstate(2,i));
+			}
+			else {
+				System.out.print("");
 			}
 		}
 		System.out.println("");
