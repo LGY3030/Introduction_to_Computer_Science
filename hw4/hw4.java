@@ -32,8 +32,8 @@ public class hw4 {
 				break;
 			}
 			if(roundflag==1) {
+				player1.drawcard(round);
 				while(true) {
-					player1.drawcard(round);
 					show();
 					System.out.println("");
 					System.out.println("指令:");
@@ -63,8 +63,8 @@ public class hw4 {
 				}
 			}
 			else {
+				player2.drawcard(round);
 				while(true) {
-					player2.drawcard(round);
 					show();
 					System.out.println("");
 					System.out.println("指令:");
@@ -94,14 +94,20 @@ public class hw4 {
 				}
 				round+=1;
 				changeAttackFlagAndAction();
-				player1.crystal=round;
-				player2.crystal=round;
+				if(round>=10){
+					player1.crystal=10;
+					player2.crystal=10;
+				}
+				else{
+					player1.crystal=round;
+					player2.crystal=round;
+				}
 			}
 		}
 	}
 	private static void show() {
+		String space=" ";
 		System.out.println("");
-		System.out.println("=====================================================");
 		System.out.println("");
 		System.out.println("");
 		System.out.println("-----------------------------------------------------");
@@ -135,131 +141,133 @@ public class hw4 {
 		}
 		System.out.println("-----------------------------------------------------");
 		for(int i=1;i<=4;i++) {
-			System.out.printf("U%-19d",i);
+			System.out.printf("U%-18d",i);
 		}
 		System.out.println("");
 		for(int i=0;i<4;i++) {
 			if(player1areahint[i].length()==2) {
-				System.out.printf("ID: %-16s",player1areahint[i]);
+				System.out.printf("ID: %-15s",player1areahint[i]);
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		for(int i=0;i<4;i++) {
 			if(player1areahint[i].length()==2) {
 				System.out.printf("ATK: %-3d",getattack(1,i));
-				System.out.printf("HP: %-8d",gethealth(1,i));
+				System.out.printf("HP: %-7d",gethealth(1,i));
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		for(int i=0;i<4;i++) {
 			if(player1areahint[i].length()==2) {
-				System.out.printf("State: %-13d",getstate(1,i));
+				System.out.printf("State: %-12s",getstate(1,i));
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
+		System.out.println("");
 		System.out.println("");
 		for(int i=5;i<=6;i++) {
-			System.out.printf("U%-19d",i);
+			System.out.printf("U%-18d",i);
 		}
 		System.out.println("");
 		for(int i=4;i<6;i++) {
 			if(player1areahint[i].length()==2) {
-				System.out.printf("ID: %-16s",player1areahint[i]);
+				System.out.printf("ID: %-15s",player1areahint[i]);
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		for(int i=4;i<6;i++) {
 			if(player1areahint[i].length()==2) {
 				System.out.printf("ATK: %-3d",getattack(1,i));
-				System.out.printf("HP: %-8d",gethealth(1,i));
+				System.out.printf("HP: %-7d",gethealth(1,i));
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		for(int i=4;i<6;i++) {
 			if(player1areahint[i].length()==2) {
-				System.out.printf("State: %-13d",getstate(1,i));
+				System.out.printf("State: %-12s",getstate(1,i));
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		System.out.println("-----------------------------------------------------");
 		for(int i=1;i<=4;i++) {
-			System.out.printf("D%-19d",i);
+			System.out.printf("D%-18d",i);
 		}
 		System.out.println("");
 		for(int i=0;i<4;i++) {
 			if(player2areahint[i].length()==2) {
-				System.out.printf("ID: %-16s",player2areahint[i]);
+				System.out.printf("ID: %-15s",player2areahint[i]);
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		for(int i=0;i<4;i++) {
 			if(player2areahint[i].length()==2) {
 				System.out.printf("ATK: %-3d",getattack(2,i));
-				System.out.printf("HP: %-8d",gethealth(2,i));
+				System.out.printf("HP: %-7d",gethealth(2,i));
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		for(int i=0;i<4;i++) {
 			if(player2areahint[i].length()==2) {
-				System.out.printf("State: %-13d",getstate(2,i));
+				System.out.printf("State: %-12s",getstate(2,i));
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
+		System.out.println("");
 		System.out.println("");
 		for(int i=5;i<=6;i++) {
-			System.out.printf("D%-19d",i);
+			System.out.printf("D%-18d",i);
 		}
 		System.out.println("");
 		for(int i=4;i<6;i++) {
 			if(player2areahint[i].length()==2) {
-				System.out.printf("ID: %-16s",player2areahint[i]);
+				System.out.printf("ID: %-15s",player2areahint[i]);
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		for(int i=4;i<6;i++) {
 			if(player2areahint[i].length()==2) {
 				System.out.printf("ATK: %-3d",getattack(2,i));
-				System.out.printf("HP: %-8d",gethealth(2,i));
+				System.out.printf("HP: %-7d",gethealth(2,i));
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
 		for(int i=4;i<6;i++) {
 			if(player2areahint[i].length()==2) {
-				System.out.printf("State: %-13d",getstate(2,i));
+				System.out.printf("State: %-12s",getstate(2,i));
 			}
 			else {
-				System.out.print("");
+				System.out.printf("%-19s",space);
 			}
 		}
 		System.out.println("");
@@ -1555,58 +1563,131 @@ public class hw4 {
 		if(player==1) {
 			switch(card) {
 				case "A1":
-					player1area[place-1]=new A1(statusnum);
-					player1areahint[place-1]="A1";
-					player1.crystal-=8;
-					player1.cards.remove("A1");
-					break;
+					if(player1.cards.contains("A1")==false){
+						System.out.println("手中牌組沒有A1");
+					}
+					else if(player1.crystal-8<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new A1(statusnum);
+						player1areahint[place-1]="A1";
+						player1.crystal-=8;
+						player1.cards.remove("A1");
+					}
+						break;
 				case "A2":
-					player1area[place-1]=new A2(statusnum);
-					player1areahint[place-1]="A2";
-					player1.crystal-=1;
-					player1.cards.remove("A2");
+					if(player1.cards.contains("A2")==false){
+						System.out.println("手中牌組沒有A2");
+					}
+					else if(player1.crystal-1<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new A2(statusnum);
+						player1areahint[place-1]="A2";
+						player1.crystal-=1;
+						player1.cards.remove("A2");
+					}
 					break;
+
 				case "B1":
-					player1area[place-1]=new B1(statusnum);
-					player1areahint[place-1]="B1";
-					player1.crystal-=7;
-					player1.cards.remove("B1");
+					if(player1.cards.contains("B1")==false){
+						System.out.println("手中牌組沒有B1");
+					}
+					else if(player1.crystal-7<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new B1(statusnum);
+						player1areahint[place-1]="B1";
+						player1.crystal-=7;
+						player1.cards.remove("B1");
+					}
 					break;
 				case "B2":
-					player1area[place-1]=new B2(statusnum);
-					player1areahint[place-1]="B2";
-					player1.crystal-=5;
+					if(player1.cards.contains("B2")==false){
+						System.out.println("手中牌組沒有B2");
+					}
+					else if(player1.crystal-5<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new B2(statusnum);
+						player1areahint[place-1]="B2";
+						player1.crystal-=5;
 					player1.cards.remove("B2");
+					}
 					break;
 				case "C1":
-					player1area[place-1]=new C1(statusnum);
-					player1areahint[place-1]="C1";
-					player1.crystal-=6;
-					player1.cards.remove("C1");
+					if(player1.cards.contains("C1")==false){
+						System.out.println("手中牌組沒有C1");
+					}
+					else if(player1.crystal-6<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new C1(statusnum);
+						player1areahint[place-1]="C1";
+						player1.crystal-=6;
+						player1.cards.remove("C1");
+					}
 					break;
 				case "C2":
-					player1area[place-1]=new C2(statusnum);
-					player1areahint[place-1]="C2";
-					player1.crystal-=4;
-					player1.cards.remove("C2");
+					if(player1.cards.contains("C2")==false){
+						System.out.println("手中牌組沒有C2");
+					}
+					else if(player1.crystal-4<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new C2(statusnum);
+						player1areahint[place-1]="C2";
+						player1.crystal-=4;
+						player1.cards.remove("C2");
+					}
 					break;
 				case "D1":
-					player1area[place-1]=new D1(statusnum);
-					player1areahint[place-1]="D1";
-					player1.crystal-=9;
-					player1.cards.remove("D1");
+					if(player1.cards.contains("D1")==false){
+						System.out.println("手中牌組沒有D1");
+					}
+					else if(player1.crystal-9<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new D1(statusnum);
+						player1areahint[place-1]="D1";
+						player1.crystal-=9;
+						player1.cards.remove("D1");
+					}
 					break;
 				case "D2":
-					player1area[place-1]=new D2(statusnum);
-					player1areahint[place-1]="D2";
-					player1.crystal-=3;
-					player1.cards.remove("D2");
+					if(player1.cards.contains("D2")==false){
+						System.out.println("手中牌組沒有D2");
+					}
+					else if(player1.crystal-3<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new D2(statusnum);
+						player1areahint[place-1]="D2";
+						player1.crystal-=3;
+						player1.cards.remove("D2");
+					}
 					break;
 				case "E1":
-					player1area[place-1]=new E1(statusnum);
-					player1areahint[place-1]="E1";
-					player1.crystal-=2;
-					player1.cards.remove("E1");
+					if(player1.cards.contains("E1")==false){
+						System.out.println("手中牌組沒有E1");
+					}
+					else if(player1.crystal-2<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player1area[place-1]=new E1(statusnum);
+						player1areahint[place-1]="E1";
+						player1.crystal-=2;
+						player1.cards.remove("E1");
+					}
 					break;
 				default:
 					break;
@@ -1615,58 +1696,130 @@ public class hw4 {
 		else {
 			switch(card) {
 				case "A1":
-					player2area[place-1]=new A1(statusnum);
-					player2areahint[place-1]="A1";
-					player2.crystal-=8;
-					player2.cards.remove("A1");
+					if(player2.cards.contains("A1")==false){
+						System.out.println("手中牌組沒有A1");
+					}
+					else if(player2.crystal-8<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new A1(statusnum);
+						player2areahint[place-1]="A1";
+						player2.crystal-=8;
+						player2.cards.remove("A1");
+					}
 					break;
 				case "A2":
-					player2area[place-1]=new A2(statusnum);
-					player2areahint[place-1]="A2";
-					player2.crystal-=1;
-					player2.cards.remove("A2");
+					if(player2.cards.contains("A2")==false){
+						System.out.println("手中牌組沒有A2");
+					}
+					else if(player2.crystal-1<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new A2(statusnum);
+						player2areahint[place-1]="A2";
+						player2.crystal-=1;
+						player2.cards.remove("A2");
+					}
 					break;
 				case "B1":
-					player2area[place-1]=new B1(statusnum);
-					player2areahint[place-1]="B1";
-					player2.crystal-=7;
-					player2.cards.remove("B1");
+					if(player2.cards.contains("B1")==false){
+						System.out.println("手中牌組沒有B1");
+					}
+					else if(player2.crystal-7<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new B1(statusnum);
+						player2areahint[place-1]="B1";
+						player2.crystal-=7;
+						player2.cards.remove("B1");
+					}
 					break;
 				case "B2":
-					player2area[place-1]=new B2(statusnum);
-					player2areahint[place-1]="B2";
-					player2.crystal-=5;
-					player2.cards.remove("B2");
+					if(player2.cards.contains("B2")==false){
+						System.out.println("手中牌組沒有B2");
+					}
+					else if(player2.crystal-5<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new B2(statusnum);
+						player2areahint[place-1]="B2";
+						player2.crystal-=5;
+						player2.cards.remove("B2");
+					}
 					break;
 				case "C1":
-					player2area[place-1]=new C1(statusnum);
-					player2areahint[place-1]="C1";
-					player2.crystal-=6;
-					player2.cards.remove("C1");
+					if(player2.cards.contains("C1")==false){
+						System.out.println("手中牌組沒有C1");
+					}
+					else if(player2.crystal-6<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new C1(statusnum);
+						player2areahint[place-1]="C1";
+						player2.crystal-=6;
+						player2.cards.remove("C1");
+					}
 					break;
 				case "C2":
-					player2area[place-1]=new C2(statusnum);
-					player2areahint[place-1]="C2";
-					player2.crystal-=4;
-					player2.cards.remove("C2");
+					if(player2.cards.contains("C2")==false){
+						System.out.println("手中牌組沒有C2");
+					}
+					else if(player2.crystal-4<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new C2(statusnum);
+						player2areahint[place-1]="C2";
+						player2.crystal-=4;
+						player2.cards.remove("C2");
+					}
 					break;
 				case "D1":
-					player2area[place-1]=new D1(statusnum);
-					player2areahint[place-1]="D1";
-					player2.crystal-=9;
-					player2.cards.remove("D1");
+					if(player2.cards.contains("D1")==false){
+						System.out.println("手中牌組沒有D1");
+					}
+					else if(player2.crystal-9<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new D1(statusnum);
+						player2areahint[place-1]="D1";
+						player2.crystal-=9;
+						player2.cards.remove("D1");
+					}
 					break;
 				case "D2":
-					player2area[place-1]=new D2(statusnum);
-					player2areahint[place-1]="D2";
-					player2.crystal-=3;
-					player2.cards.remove("D2");
+					if(player2.cards.contains("D2")==false){
+						System.out.println("手中牌組沒有D2");
+					}
+					else if(player2.crystal-3<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new D2(statusnum);
+						player2areahint[place-1]="D2";
+						player2.crystal-=3;
+						player2.cards.remove("D2");
+					}
 					break;
 				case "E1":
-					player2area[place-1]=new E1(statusnum);
-					player2areahint[place-1]="E1";
-					player2.crystal-=2;
-					player2.cards.remove("E1");
+					if(player2.cards.contains("E1")==false){
+						System.out.println("手中牌組沒有E1");
+					}
+					else if(player2.crystal-2<0){
+						System.out.println("水晶不夠，無法召喚");
+					}
+					else{
+						player2area[place-1]=new E1(statusnum);
+						player2areahint[place-1]="E1";
+						player2.crystal-=2;
+						player2.cards.remove("E1");
+					}
 					break;
 				default:
 					break;

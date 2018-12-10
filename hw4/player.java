@@ -44,13 +44,18 @@ public class player {
 		else {
 			round/=3;
 			round+=1;
-			for(int i=0;i<round-1;i++) {
-				if(cards.size()==8) {
-					allcards.remove(0);
+			for(int i=0;i<round;i++) {
+				if(allcards.size()==0){
+					break;
 				}
-				else {
-					cards.add(allcards.get(0));
-					allcards.remove(0);
+				else{
+					if(cards.size()==8) {
+						allcards.remove(0);
+					}
+					else {
+						cards.add(allcards.get(0));
+						allcards.remove(0);
+					}	
 				}
 			}
 		}
