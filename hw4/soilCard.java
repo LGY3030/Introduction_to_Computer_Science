@@ -5,11 +5,11 @@ public class soilCard {
 	int status;
 	int attackflag;
 	int action;
-	int attack(String card) {
-		if(card=="D") {
+	int attack(String card,int attack) {
+		if(card.equals("D")) {
 			attack=attack-1;
 		}
-		else if(card=="A") {
+		else if(card.equals("A")) {
 			attack=attack+1;
 		}
 		else {

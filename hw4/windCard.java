@@ -5,11 +5,11 @@ public class windCard {
 	int status;
 	int attackflag;
 	int action;
-	int attack(String card) {
-		if(card=="B") {
+	int attack(String card,int attack) {
+		if(card.equals("B")) {
 			attack=attack-1;
 		}
-		else if(card=="D") {
+		else if(card.equals("D")) {
 			attack=attack+1;
 		}
 		else {

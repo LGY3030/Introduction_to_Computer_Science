@@ -5,11 +5,11 @@ public class fireCard {
 	int status;
 	int attackflag;
 	int action;
-	int attack(String card) {
-		if(card=="A") {
+	int attack(String card,int attack) {
+		if(card.equals("A")) {
 			attack=attack-1;
 		}
-		else if(card=="C") {
+		else if(card.equals("C")) {
 			attack=attack+1;
 		}
 		else {

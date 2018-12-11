@@ -88,7 +88,7 @@ public class hw4 {
 							attackenemy(2,Integer.parseInt(instruction[0].substring(1)));
 						}
 						else {
-							attackcard(2,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
+							attackcard(2,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player1areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
 						}
 					}
 				}
@@ -810,7 +810,7 @@ public class hw4 {
 				switch(player1areahint[offend-1]) {
 					case "A1":
 						if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
-							offendattack=((A1)player1area[offend-1]).attack(hint);
+							offendattack=((A1)player1area[offend-1]).attack(hint,8);
 							((A1)player1area[offend-1]).action=1;
 						}
 						else {
@@ -820,7 +820,7 @@ public class hw4 {
 						break;
 					case "A2":
 						if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
-							offendattack=((A2)player1area[offend-1]).attack(hint);
+							offendattack=((A2)player1area[offend-1]).attack(hint,0);
 							((A2)player1area[offend-1]).action=1;
 						}
 						else {
@@ -830,7 +830,7 @@ public class hw4 {
 						break;
 					case "B1":
 						if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
-							offendattack=((B1)player1area[offend-1]).attack(hint);
+							offendattack=((B1)player1area[offend-1]).attack(hint,7);
 							((B1)player1area[offend-1]).action=1;
 						}
 						else {
@@ -840,7 +840,7 @@ public class hw4 {
 						break;
 					case "B2":
 						if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
-							offendattack=((B2)player1area[offend-1]).attack(hint);
+							offendattack=((B2)player1area[offend-1]).attack(hint,6);
 							((B2)player1area[offend-1]).action=1;
 						}
 						else {
@@ -850,7 +850,7 @@ public class hw4 {
 						break;
 					case "C1":
 						if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
-							offendattack=((C1)player1area[offend-1]).attack(hint);
+							offendattack=((C1)player1area[offend-1]).attack(hint,5);
 							((C1)player1area[offend-1]).action=1;
 						}
 						else {
@@ -860,7 +860,7 @@ public class hw4 {
 						break;
 					case "C2":
 						if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
-							offendattack=((C2)player1area[offend-1]).attack(hint);
+							offendattack=((C2)player1area[offend-1]).attack(hint,6);
 							((C2)player1area[offend-1]).action=1;
 						}
 						else {
@@ -870,7 +870,7 @@ public class hw4 {
 						break;
 					case "D1":
 						if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
-							offendattack=((D1)player1area[offend-1]).attack(hint);
+							offendattack=((D1)player1area[offend-1]).attack(hint,10);
 							((D1)player1area[offend-1]).action=1;
 						}
 						else {
@@ -880,7 +880,7 @@ public class hw4 {
 						break;
 					case "D2":
 						if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
-							offendattack=((D2)player1area[offend-1]).attack(hint);
+							offendattack=((D2)player1area[offend-1]).attack(hint,3);
 							((D2)player1area[offend-1]).action=1;
 						}
 						else {
@@ -890,7 +890,7 @@ public class hw4 {
 						break;
 					case "E1":
 						if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
-							offendattack=((E1)player1area[offend-1]).attack(hint);
+							offendattack=((E1)player1area[offend-1]).attack(hint,0);
 							((E1)player1area[offend-1]).action=1;
 						}
 						else {
@@ -987,7 +987,7 @@ public class hw4 {
 				switch(player2areahint[offend-1]) {
 					case "A1":
 						if(((A1)player2area[offend-1]).action==0&&((A1)player2area[offend-1]).attackflag==1) {
-							offendattack=((A1)player2area[offend-1]).attack(hint);
+							offendattack=((A1)player2area[offend-1]).attack(hint,8);
 							((A1)player2area[offend-1]).action=1;
 						}
 						else {
@@ -997,7 +997,7 @@ public class hw4 {
 						break;
 					case "A2":
 						if(((A2)player2area[offend-1]).action==0&&((A2)player2area[offend-1]).attackflag==1) {
-							offendattack=((A2)player2area[offend-1]).attack(hint);
+							offendattack=((A2)player2area[offend-1]).attack(hint,0);
 							((A2)player2area[offend-1]).action=1;
 						}
 						else {
@@ -1007,7 +1007,7 @@ public class hw4 {
 						break;
 					case "B1":
 						if(((B1)player2area[offend-1]).action==0&&((B1)player2area[offend-1]).attackflag==1) {
-							offendattack=((B1)player2area[offend-1]).attack(hint);
+							offendattack=((B1)player2area[offend-1]).attack(hint,7);
 							((B1)player2area[offend-1]).action=1;
 						}
 						else {
@@ -1017,7 +1017,7 @@ public class hw4 {
 						break;
 					case "B2":
 						if(((B2)player2area[offend-1]).action==0&&((B2)player2area[offend-1]).attackflag==1) {
-							offendattack=((B2)player2area[offend-1]).attack(hint);
+							offendattack=((B2)player2area[offend-1]).attack(hint,6);
 							((B2)player2area[offend-1]).action=1;
 						}
 						else {
@@ -1027,7 +1027,7 @@ public class hw4 {
 						break;
 					case "C1":
 						if(((C1)player2area[offend-1]).action==0&&((C1)player2area[offend-1]).attackflag==1) {
-							offendattack=((C1)player2area[offend-1]).attack(hint);
+							offendattack=((C1)player2area[offend-1]).attack(hint,5);
 							((C1)player2area[offend-1]).action=1;
 						}
 						else {
@@ -1037,7 +1037,7 @@ public class hw4 {
 						break;
 					case "C2":
 						if(((C2)player2area[offend-1]).action==0&&((C2)player2area[offend-1]).attackflag==1) {
-							offendattack=((C2)player2area[offend-1]).attack(hint);
+							offendattack=((C2)player2area[offend-1]).attack(hint,6);
 							((C2)player2area[offend-1]).action=1;
 						}
 						else {
@@ -1047,7 +1047,7 @@ public class hw4 {
 						break;
 					case "D1":
 						if(((D1)player2area[offend-1]).action==0&&((D1)player2area[offend-1]).attackflag==1) {
-							offendattack=((D1)player2area[offend-1]).attack(hint);
+							offendattack=((D1)player2area[offend-1]).attack(hint,10);
 							((D1)player2area[offend-1]).action=1;
 						}
 						else {
@@ -1057,7 +1057,7 @@ public class hw4 {
 						break;
 					case "D2":
 						if(((D2)player2area[offend-1]).action==0&&((D2)player2area[offend-1]).attackflag==1) {
-							offendattack=((D2)player2area[offend-1]).attack(hint);
+							offendattack=((D2)player2area[offend-1]).attack(hint,3);
 							((D2)player2area[offend-1]).action=1;
 						}
 						else {
@@ -1067,7 +1067,7 @@ public class hw4 {
 						break;
 					case "E1":
 						if(((E1)player2area[offend-1]).action==0&&((E1)player2area[offend-1]).attackflag==1) {
-							offendattack=((E1)player2area[offend-1]).attack(hint);
+							offendattack=((E1)player2area[offend-1]).attack(hint,0);
 							((E1)player2area[offend-1]).action=1;
 						}
 						else {
