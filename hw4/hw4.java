@@ -13,6 +13,7 @@ public class hw4 {
 		
 		int exit=0;
 		int round=1;
+		int checkatten=0;
 		String[] instruction;
 		for(int i=0;i<6;i++) {
 			player1area[i]=null;
@@ -54,7 +55,13 @@ public class hw4 {
 					}
 					else {
 						if(instruction[2].equals("enemy")) {
-							attackenemy(1,Integer.parseInt(instruction[0].substring(1)));
+							checkatten=hasdefend(2);
+							if(checkatten==1){
+								attackenemy(1,Integer.parseInt(instruction[0].substring(1)));
+							}
+							else{
+								System.out.println("無法攻擊，因為場上有防禦的怪獸");
+							}
 						}
 						else {
 							attackcard(1,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
@@ -85,7 +92,13 @@ public class hw4 {
 					}
 					else {
 						if(instruction[2].equals("enemy")) {
-							attackenemy(2,Integer.parseInt(instruction[0].substring(1)));
+							checkatten=hasdefend(1);
+							if(checkatten==1){
+								attackenemy(2,Integer.parseInt(instruction[0].substring(1)));
+							}
+							else{
+								System.out.println("無法攻擊，因為場上有防禦的怪獸");
+							}
 						}
 						else {
 							attackcard(2,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player1areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
@@ -293,6 +306,91 @@ public class hw4 {
 		}
 		System.out.println("-----------------------------------------------------");
 		
+	}
+	private static int hasdefend(int player) {
+		int answer=1;
+		if(player==1) {
+			if(player1areahint.length>0) {
+				for(int i=0;i<player1areahint.length;i++) {
+					switch(player1areahint[i]) {
+						case "A1":
+							answer*=((A1)player1area[i]).status;
+							break;
+						case "A2":
+							answer*=((A2)player1area[i]).status;
+							break;
+						case "B1":
+							answer*=((B1)player1area[i]).status;
+							break;
+						case "B2":
+							answer*=((B2)player1area[i]).status;
+							break;
+						case "C1":
+							answer*=((C1)player1area[i]).status;
+							break;
+						case "C2":
+							answer*=((C2)player1area[i]).status;
+							break;
+						case "D1":
+							answer*=((D1)player1area[i]).status;
+							break;
+						case "D2":
+							answer*=((D2)player1area[i]).status;
+							break;
+						case "E1":
+							answer*=((E1)player1area[i]).status;
+							break;
+						default:
+							break;
+					}
+				}
+				return answer;
+			}
+			else {
+				return answer;
+			}		
+		}
+		else {
+			if(player2areahint.length>0) {
+				for(int i=0;i<player2areahint.length;i++) {
+					switch(player2areahint[i]) {
+						case "A1":
+							answer*=((A1)player2area[i]).status;
+							break;
+						case "A2":
+							answer*=((A2)player2area[i]).status;
+							break;
+						case "B1":
+							answer*=((B1)player2area[i]).status;
+							break;
+						case "B2":
+							answer*=((B2)player2area[i]).status;
+							break;
+						case "C1":
+							answer*=((C1)player2area[i]).status;
+							break;
+						case "C2":
+							answer*=((C2)player2area[i]).status;
+							break;
+						case "D1":
+							answer*=((D1)player2area[i]).status;
+							break;
+						case "D2":
+							answer*=((D2)player2area[i]).status;
+							break;
+						case "E1":
+							answer*=((E1)player2area[i]).status;
+							break;
+						default:
+							break;
+					}
+				}
+				return answer;
+			}
+			else {
+				return answer;
+			}	
+		}
 	}
 	private static String getstate(int player, int i) {
 		String state="";
