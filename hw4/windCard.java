@@ -8,6 +8,9 @@ public class windCard {
 	int attack(String card,int attack) {
 		if(card.equals("B")) {
 			attack=attack-1;
+			if(attack<0){
+				attack=0;
+			}
 		}
 		else if(card.equals("D")) {
 			attack=attack+1;

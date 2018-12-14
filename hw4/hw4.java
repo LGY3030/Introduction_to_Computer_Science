@@ -22,6 +22,7 @@ public class hw4 {
 			player2areahint[i]="";
 		}
 		Scanner scanner=new Scanner(System.in);
+		System.out.println("Welcome to the game!!");
 		System.out.println("輸入玩家名稱:");
 		String[] getname=scanner.nextLine().split(" ");
 		player1.name=getname[0];
@@ -62,9 +63,19 @@ public class hw4 {
 							else{
 								System.out.println("無法攻擊，因為場上有防禦的怪獸");
 							}
+							if(player2.health<=0){
+								System.out.println(player1.name+" 獲勝");
+								exit=1;
+								break;
+							}
 						}
 						else {
 							attackcard(1,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player2areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
+							if(player2areahint.length==0&&player2.cards.size()==0&&player2.allcards.size()==0){
+								System.out.println(player1.name+" 獲勝");
+								exit=1;
+								break;	
+							}
 						}
 					}
 				}
@@ -94,14 +105,24 @@ public class hw4 {
 						if(instruction[2].equals("enemy")) {
 							checkatten=hasdefend(1);
 							if(checkatten==1){
-								attackenemy(2,Integer.parseInt(instruction[0].substring(1)));
+								attackenemy(2,Integer.parseInt(instruction[0].substring(1)));	
 							}
 							else{
 								System.out.println("無法攻擊，因為場上有防禦的怪獸");
 							}
+							if(player1.health<=0){
+								System.out.println(player2.name+" 獲勝");
+								exit=1;
+								break;
+							}
 						}
 						else {
 							attackcard(2,Integer.parseInt(instruction[0].substring(1)),Integer.parseInt(instruction[2].substring(1)),player1areahint[Integer.parseInt(instruction[2].substring(1,2))-1].substring(0,1));
+							if(player1areahint.length==0&&player1.cards.size()==0&&player1.allcards.size()==0){
+								System.out.println(player2.name+" 獲勝");
+								exit=1;
+								break;	
+							}
 						}
 					}
 				}
@@ -700,7 +721,7 @@ public class hw4 {
 			if(player1areahint[offend-1].length()==2) {
 				switch(player1areahint[offend-1]) {
 					case "A1":
-						if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
+						if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1&&((A1)player1area[offend-1]).status==1) {
 							offendattack=((A1)player1area[offend-1]).attack;
 							((A1)player1area[offend-1]).action=1;
 						}
@@ -710,7 +731,7 @@ public class hw4 {
 						}
 						break;
 					case "A2":
-						if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
+						if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1&&((A2)player1area[offend-1]).status==1) {
 							offendattack=((A2)player1area[offend-1]).attack;
 							((A2)player1area[offend-1]).action=1;
 						}
@@ -720,7 +741,7 @@ public class hw4 {
 						}
 						break;
 					case "B1":
-						if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
+						if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1&&((B1)player1area[offend-1]).status==1) {
 							offendattack=((B1)player1area[offend-1]).attack;
 							((B1)player1area[offend-1]).action=1;
 						}
@@ -730,7 +751,7 @@ public class hw4 {
 						}
 						break;
 					case "B2":
-						if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
+						if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1&&((B2)player1area[offend-1]).status==1) {
 							offendattack=((B2)player1area[offend-1]).attack;
 							((B2)player1area[offend-1]).action=1;
 						}
@@ -740,7 +761,7 @@ public class hw4 {
 						}
 						break;
 					case "C1":
-						if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
+						if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1&&((C1)player1area[offend-1]).status==1) {
 							offendattack=((C1)player1area[offend-1]).attack;
 							((C1)player1area[offend-1]).action=1;
 						}
@@ -750,7 +771,7 @@ public class hw4 {
 						}
 						break;
 					case "C2":
-						if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
+						if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1&&((C2)player1area[offend-1]).status==1) {
 							offendattack=((C2)player1area[offend-1]).attack;
 							((C2)player1area[offend-1]).action=1;
 						}
@@ -760,7 +781,7 @@ public class hw4 {
 						}
 						break;
 					case "D1":
-						if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
+						if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1&&((D1)player1area[offend-1]).status==1) {
 							offendattack=((D1)player1area[offend-1]).attack;
 							((D1)player1area[offend-1]).action=1;
 						}
@@ -770,7 +791,7 @@ public class hw4 {
 						}
 						break;
 					case "D2":
-						if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
+						if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1&&((D2)player1area[offend-1]).status==1) {
 							offendattack=((D2)player1area[offend-1]).attack;
 							((D2)player1area[offend-1]).action=1;
 						}
@@ -780,7 +801,7 @@ public class hw4 {
 						}
 						break;
 					case "E1":
-						if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
+						if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1&&((E1)player1area[offend-1]).status==1) {
 							offendattack=((E1)player1area[offend-1]).attack;
 							((E1)player1area[offend-1]).action=1;
 						}
@@ -801,7 +822,7 @@ public class hw4 {
 			if(player2areahint[offend-1].length()==2) {
 				switch(player2areahint[offend-1]) {
 					case "A1":
-						if(((A1)player2area[offend-1]).action==0&&((A1)player2area[offend-1]).attackflag==1) {
+						if(((A1)player2area[offend-1]).action==0&&((A1)player2area[offend-1]).attackflag==1&&((A1)player2area[offend-1]).status==1) {
 							offendattack=((A1)player2area[offend-1]).attack;
 							((A1)player2area[offend-1]).action=1;
 						}
@@ -811,7 +832,7 @@ public class hw4 {
 						}
 						break;
 					case "A2":
-						if(((A2)player2area[offend-1]).action==0&&((A2)player2area[offend-1]).attackflag==1) {
+						if(((A2)player2area[offend-1]).action==0&&((A2)player2area[offend-1]).attackflag==1&&((A2)player2area[offend-1]).status==1) {
 							offendattack=((A2)player2area[offend-1]).attack;
 							((A2)player2area[offend-1]).action=1;
 						}
@@ -821,7 +842,7 @@ public class hw4 {
 						}
 						break;
 					case "B1":
-						if(((B1)player2area[offend-1]).action==0&&((B1)player2area[offend-1]).attackflag==1) {
+						if(((B1)player2area[offend-1]).action==0&&((B1)player2area[offend-1]).attackflag==1&&((B1)player2area[offend-1]).status==1) {
 							offendattack=((B1)player2area[offend-1]).attack;
 							((B1)player2area[offend-1]).action=1;
 						}
@@ -831,7 +852,7 @@ public class hw4 {
 						}
 						break;
 					case "B2":
-						if(((B2)player2area[offend-1]).action==0&&((B2)player2area[offend-1]).attackflag==1) {
+						if(((B2)player2area[offend-1]).action==0&&((B2)player2area[offend-1]).attackflag==1&&((B2)player2area[offend-1]).status==1) {
 							offendattack=((B2)player2area[offend-1]).attack;
 							((B2)player2area[offend-1]).action=1;
 						}
@@ -841,7 +862,7 @@ public class hw4 {
 						}
 						break;
 					case "C1":
-						if(((C1)player2area[offend-1]).action==0&&((C1)player2area[offend-1]).attackflag==1) {
+						if(((C1)player2area[offend-1]).action==0&&((C1)player2area[offend-1]).attackflag==1&&((C1)player2area[offend-1]).status==1) {
 							offendattack=((C1)player2area[offend-1]).attack;
 							((C1)player2area[offend-1]).action=1;
 						}
@@ -851,7 +872,7 @@ public class hw4 {
 						}
 						break;
 					case "C2":
-						if(((C2)player2area[offend-1]).action==0&&((C2)player2area[offend-1]).attackflag==1) {
+						if(((C2)player2area[offend-1]).action==0&&((C2)player2area[offend-1]).attackflag==1&&((C2)player2area[offend-1]).status==1) {
 							offendattack=((C2)player2area[offend-1]).attack;
 							((C2)player2area[offend-1]).action=1;
 						}
@@ -861,7 +882,7 @@ public class hw4 {
 						}
 						break;
 					case "D1":
-						if(((D1)player2area[offend-1]).action==0&&((D1)player2area[offend-1]).attackflag==1) {
+						if(((D1)player2area[offend-1]).action==0&&((D1)player2area[offend-1]).attackflag==1&&((D1)player2area[offend-1]).status==1) {
 							offendattack=((D1)player2area[offend-1]).attack;
 							((D1)player2area[offend-1]).action=1;
 						}
@@ -871,7 +892,7 @@ public class hw4 {
 						}
 						break;
 					case "D2":
-						if(((D2)player2area[offend-1]).action==0&&((D2)player2area[offend-1]).attackflag==1) {
+						if(((D2)player2area[offend-1]).action==0&&((D2)player2area[offend-1]).attackflag==1&&((D2)player2area[offend-1]).status==1) {
 							offendattack=((D2)player2area[offend-1]).attack;
 							((D2)player2area[offend-1]).action=1;
 						}
@@ -881,7 +902,7 @@ public class hw4 {
 						}
 						break;
 					case "E1":
-						if(((E1)player2area[offend-1]).action==0&&((E1)player2area[offend-1]).attackflag==1) {
+						if(((E1)player2area[offend-1]).action==0&&((E1)player2area[offend-1]).attackflag==1&&((E1)player2area[offend-1]).status==1) {
 							offendattack=((E1)player2area[offend-1]).attack;
 							((E1)player2area[offend-1]).action=1;
 						}
@@ -907,7 +928,7 @@ public class hw4 {
 			if(player1areahint[offend-1].length()==2) {
 				switch(player1areahint[offend-1]) {
 					case "A1":
-						if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1) {
+						if(((A1)player1area[offend-1]).action==0&&((A1)player1area[offend-1]).attackflag==1&&((A1)player1area[offend-1]).status==1) {
 							offendattack=((A1)player1area[offend-1]).attack(hint,8);
 							((A1)player1area[offend-1]).action=1;
 						}
@@ -917,7 +938,7 @@ public class hw4 {
 						}
 						break;
 					case "A2":
-						if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1) {
+						if(((A2)player1area[offend-1]).action==0&&((A2)player1area[offend-1]).attackflag==1&&((A2)player1area[offend-1]).status==1) {
 							offendattack=((A2)player1area[offend-1]).attack(hint,0);
 							((A2)player1area[offend-1]).action=1;
 						}
@@ -927,7 +948,7 @@ public class hw4 {
 						}
 						break;
 					case "B1":
-						if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1) {
+						if(((B1)player1area[offend-1]).action==0&&((B1)player1area[offend-1]).attackflag==1&&((B1)player1area[offend-1]).status==1) {
 							offendattack=((B1)player1area[offend-1]).attack(hint,7);
 							((B1)player1area[offend-1]).action=1;
 						}
@@ -937,7 +958,7 @@ public class hw4 {
 						}
 						break;
 					case "B2":
-						if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1) {
+						if(((B2)player1area[offend-1]).action==0&&((B2)player1area[offend-1]).attackflag==1&&((B2)player1area[offend-1]).status==1) {
 							offendattack=((B2)player1area[offend-1]).attack(hint,6);
 							((B2)player1area[offend-1]).action=1;
 						}
@@ -947,7 +968,7 @@ public class hw4 {
 						}
 						break;
 					case "C1":
-						if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1) {
+						if(((C1)player1area[offend-1]).action==0&&((C1)player1area[offend-1]).attackflag==1&&((C1)player1area[offend-1]).status==1) {
 							offendattack=((C1)player1area[offend-1]).attack(hint,5);
 							((C1)player1area[offend-1]).action=1;
 						}
@@ -957,7 +978,7 @@ public class hw4 {
 						}
 						break;
 					case "C2":
-						if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1) {
+						if(((C2)player1area[offend-1]).action==0&&((C2)player1area[offend-1]).attackflag==1&&((C2)player1area[offend-1]).status==1) {
 							offendattack=((C2)player1area[offend-1]).attack(hint,6);
 							((C2)player1area[offend-1]).action=1;
 						}
@@ -967,7 +988,7 @@ public class hw4 {
 						}
 						break;
 					case "D1":
-						if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1) {
+						if(((D1)player1area[offend-1]).action==0&&((D1)player1area[offend-1]).attackflag==1&&((D1)player1area[offend-1]).status==1) {
 							offendattack=((D1)player1area[offend-1]).attack(hint,10);
 							((D1)player1area[offend-1]).action=1;
 						}
@@ -977,7 +998,7 @@ public class hw4 {
 						}
 						break;
 					case "D2":
-						if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1) {
+						if(((D2)player1area[offend-1]).action==0&&((D2)player1area[offend-1]).attackflag==1&&((D2)player1area[offend-1]).status==1) {
 							offendattack=((D2)player1area[offend-1]).attack(hint,3);
 							((D2)player1area[offend-1]).action=1;
 						}
@@ -987,7 +1008,7 @@ public class hw4 {
 						}
 						break;
 					case "E1":
-						if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1) {
+						if(((E1)player1area[offend-1]).action==0&&((E1)player1area[offend-1]).attackflag==1&&((E1)player1area[offend-1]).status==1) {
 							offendattack=((E1)player1area[offend-1]).attack(hint,0);
 							((E1)player1area[offend-1]).action=1;
 						}
@@ -1084,7 +1105,7 @@ public class hw4 {
 			if(player2areahint[offend-1].length()==2) {
 				switch(player2areahint[offend-1]) {
 					case "A1":
-						if(((A1)player2area[offend-1]).action==0&&((A1)player2area[offend-1]).attackflag==1) {
+						if(((A1)player2area[offend-1]).action==0&&((A1)player2area[offend-1]).attackflag==1&&((A1)player2area[offend-1]).status==1) {
 							offendattack=((A1)player2area[offend-1]).attack(hint,8);
 							((A1)player2area[offend-1]).action=1;
 						}
@@ -1094,7 +1115,7 @@ public class hw4 {
 						}
 						break;
 					case "A2":
-						if(((A2)player2area[offend-1]).action==0&&((A2)player2area[offend-1]).attackflag==1) {
+						if(((A2)player2area[offend-1]).action==0&&((A2)player2area[offend-1]).attackflag==1&&((A2)player2area[offend-1]).status==1) {
 							offendattack=((A2)player2area[offend-1]).attack(hint,0);
 							((A2)player2area[offend-1]).action=1;
 						}
@@ -1104,7 +1125,7 @@ public class hw4 {
 						}
 						break;
 					case "B1":
-						if(((B1)player2area[offend-1]).action==0&&((B1)player2area[offend-1]).attackflag==1) {
+						if(((B1)player2area[offend-1]).action==0&&((B1)player2area[offend-1]).attackflag==1&&((B1)player2area[offend-1]).status==1) {
 							offendattack=((B1)player2area[offend-1]).attack(hint,7);
 							((B1)player2area[offend-1]).action=1;
 						}
@@ -1114,7 +1135,7 @@ public class hw4 {
 						}
 						break;
 					case "B2":
-						if(((B2)player2area[offend-1]).action==0&&((B2)player2area[offend-1]).attackflag==1) {
+						if(((B2)player2area[offend-1]).action==0&&((B2)player2area[offend-1]).attackflag==1&&((B2)player2area[offend-1]).status==1) {
 							offendattack=((B2)player2area[offend-1]).attack(hint,6);
 							((B2)player2area[offend-1]).action=1;
 						}
@@ -1124,7 +1145,7 @@ public class hw4 {
 						}
 						break;
 					case "C1":
-						if(((C1)player2area[offend-1]).action==0&&((C1)player2area[offend-1]).attackflag==1) {
+						if(((C1)player2area[offend-1]).action==0&&((C1)player2area[offend-1]).attackflag==1&&((C1)player2area[offend-1]).status==1) {
 							offendattack=((C1)player2area[offend-1]).attack(hint,5);
 							((C1)player2area[offend-1]).action=1;
 						}
@@ -1134,7 +1155,7 @@ public class hw4 {
 						}
 						break;
 					case "C2":
-						if(((C2)player2area[offend-1]).action==0&&((C2)player2area[offend-1]).attackflag==1) {
+						if(((C2)player2area[offend-1]).action==0&&((C2)player2area[offend-1]).attackflag==1&&((C2)player2area[offend-1]).status==1) {
 							offendattack=((C2)player2area[offend-1]).attack(hint,6);
 							((C2)player2area[offend-1]).action=1;
 						}
@@ -1144,7 +1165,7 @@ public class hw4 {
 						}
 						break;
 					case "D1":
-						if(((D1)player2area[offend-1]).action==0&&((D1)player2area[offend-1]).attackflag==1) {
+						if(((D1)player2area[offend-1]).action==0&&((D1)player2area[offend-1]).attackflag==1&&((D1)player2area[offend-1]).status==1) {
 							offendattack=((D1)player2area[offend-1]).attack(hint,10);
 							((D1)player2area[offend-1]).action=1;
 						}
@@ -1154,7 +1175,7 @@ public class hw4 {
 						}
 						break;
 					case "D2":
-						if(((D2)player2area[offend-1]).action==0&&((D2)player2area[offend-1]).attackflag==1) {
+						if(((D2)player2area[offend-1]).action==0&&((D2)player2area[offend-1]).attackflag==1&&((D2)player2area[offend-1]).status==1) {
 							offendattack=((D2)player2area[offend-1]).attack(hint,3);
 							((D2)player2area[offend-1]).action=1;
 						}
@@ -1164,7 +1185,7 @@ public class hw4 {
 						}
 						break;
 					case "E1":
-						if(((E1)player2area[offend-1]).action==0&&((E1)player2area[offend-1]).attackflag==1) {
+						if(((E1)player2area[offend-1]).action==0&&((E1)player2area[offend-1]).attackflag==1&&((E1)player2area[offend-1]).status==1) {
 							offendattack=((E1)player2area[offend-1]).attack(hint,0);
 							((E1)player2area[offend-1]).action=1;
 						}
@@ -1714,7 +1735,7 @@ public class hw4 {
 						player1area[place-1]=new B2(statusnum);
 						player1areahint[place-1]="B2";
 						player1.crystal-=5;
-					player1.cards.remove("B2");
+						player1.cards.remove("B2");
 					}
 					break;
 				case "C1":

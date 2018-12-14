@@ -8,6 +8,9 @@ public class thunderCard {
 	int attack(String card,int attack) {
 		if(card.equals("C")) {
 			attack=attack-1;
+			if(attack<0){
+				attack=0;
+			}
 		}
 		else if(card.equals("E")) {
 			attack=attack+1;
