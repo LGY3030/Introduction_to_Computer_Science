@@ -20,4 +20,12 @@ public class thunderCard {
 		}
 		return attack;
 	}
+	void ability(int player,player player1,player player2) {
+		if(player==1) {
+			player2.health-=2;
+		}
+		else {
+			player1.health-=2;
+		}
+	}
 }

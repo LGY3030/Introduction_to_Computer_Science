@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class player {
-	
 	int health;
 	int crystal;
+	int career;
+	int abilityflag=0;
 	String name;
 	ArrayList <String> cards;
 	ArrayList <String> allcards;
 	Scanner scanner;
+	
 	public player(String person) {
 		
-		health=20;
 		crystal=1;
 		name="";
 		cards=new ArrayList();
@@ -26,6 +27,24 @@ public class player {
 		}
 		for (int i = 0; i<15; i++) {
 			allcards.add(scanner.nextLine());
+		}
+	}
+	public void careerandhealth(String career) {
+		if(career.equals("Warrior")) {
+			this.career=0;
+			this.health=40;
+		}
+		else if(career.equals("Magician")) {
+			this.career=1;
+			this.health=20;
+		}
+		else if(career.equals("Priest")) {
+			this.career=2;
+			this.health=20;
+		}
+		else {
+			this.career=3;
+			this.health=16;
 		}
 	}
 	public void drawcard(int round) {

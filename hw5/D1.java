@@ -9,4 +9,3 @@ public class D1 extends thunderCard{
 		this.action=0;
 	}
 }
-

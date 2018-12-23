@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class hw4 {
+public class hw5 {
 	
 	private static Object[] player1area=new Object[6];
 	private static Object[] player2area=new Object[6];
@@ -26,7 +26,9 @@ public class hw4 {
 		System.out.println("輸入玩家名稱:");
 		String[] getname=scanner.nextLine().split(" ");
 		player1.name=getname[0];
-		player2.name=getname[1];
+		player1.careerandhealth(getname[1]);
+		player2.name=getname[2];
+		player2.careerandhealth(getname[3]);
 		player1.drawcard(100);
 		player2.drawcard(100);
 		while(true) {
@@ -47,6 +49,9 @@ public class hw4 {
 					else if(instruction[0].equals("finish")) {
 						roundflag=2;
 						break;
+					}
+					else if(instruction[0].equals("cast")) {
+						playerability(1,instruction[2]);
 					}
 					else if(instruction[0].equals("select")) {
 						createcardobject(1,instruction[1],Integer.parseInt(instruction[2].substring(1)),instruction[3]);
@@ -136,6 +141,290 @@ public class hw4 {
 					player1.crystal=round;
 					player2.crystal=round;
 				}
+				player1.abilityflag=0;
+				player1.abilityflag=0;
+			}
+		}
+	}
+	private static void playerability(int player,String victim) {
+		if(player==1) {
+			if(player1.abilityflag==0) {
+				if(player1.career==0) {
+					System.out.println("你沒有技能!!");
+				}
+				else if(player1.career==1) {
+					if(player1.crystal>=2) {
+						if(victim.equals("enemy")) {
+							player1.crystal-=2;
+							player2.health-=1;
+						}
+						else {
+							player1.crystal-=2;
+							switch(player2areahint[Integer.parseInt(victim.substring(1))-1]) {
+								case "A1":
+									((A1)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "A2":
+									((A2)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "B1":
+									((B1)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "B2":
+									((B2)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "C1":
+									((C1)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "C2":
+									((C2)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "D1":
+									((D1)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "D2":
+									((D2)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "E1":
+									((E1)player2area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								default:
+									break;
+							}
+						}
+					}
+					else {
+						System.out.println("水晶不夠");
+					}
+				}
+				else if(player1.career==2) {
+					if(player1.crystal>=2) {
+						if(victim.equals("myself")) {
+							player1.crystal-=2;
+							player1.health+=2;
+							if(player1.health>=20) {
+								player1.health=20;
+							}
+						}
+						else {
+							player1.crystal-=2;
+							switch(player1areahint[Integer.parseInt(victim.substring(1))-1]) {
+								case "A1":
+									((A1)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((A1)player1area[Integer.parseInt(victim.substring(1))-1]).health>=8) {
+										((A1)player1area[Integer.parseInt(victim.substring(1))-1]).health=8;
+									}
+									break;
+								case "A2":
+									((A2)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((A2)player1area[Integer.parseInt(victim.substring(1))-1]).health>=2) {
+										((A2)player1area[Integer.parseInt(victim.substring(1))-1]).health=2;
+									}
+									break;
+								case "B1":
+									((B1)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((B1)player1area[Integer.parseInt(victim.substring(1))-1]).health>=7) {
+										((B1)player1area[Integer.parseInt(victim.substring(1))-1]).health=7;
+									}
+									break;
+								case "B2":
+									((B2)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((B2)player1area[Integer.parseInt(victim.substring(1))-1]).health>=4) {
+										((B2)player1area[Integer.parseInt(victim.substring(1))-1]).health=4;
+									}
+									break;
+								case "C1":
+									((C1)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((C1)player1area[Integer.parseInt(victim.substring(1))-1]).health>=7) {
+										((C1)player1area[Integer.parseInt(victim.substring(1))-1]).health=7;
+									}
+									break;
+								case "C2":
+									((C2)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((C2)player1area[Integer.parseInt(victim.substring(1))-1]).health>=1) {
+										((C2)player1area[Integer.parseInt(victim.substring(1))-1]).health=1;
+									}
+									break;
+								case "D1":
+									((D1)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((D1)player1area[Integer.parseInt(victim.substring(1))-1]).health>=8) {
+										((D1)player1area[Integer.parseInt(victim.substring(1))-1]).health=8;
+									}
+									break;
+								case "D2":
+									((D2)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((D2)player1area[Integer.parseInt(victim.substring(1))-1]).health>=4) {
+										((D2)player1area[Integer.parseInt(victim.substring(1))-1]).health=4;
+									}
+									break;
+								case "E1":
+									((E1)player1area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((E1)player1area[Integer.parseInt(victim.substring(1))-1]).health>=4) {
+										((E1)player1area[Integer.parseInt(victim.substring(1))-1]).health=4;
+									}
+									break;
+								default:
+									break;
+							}
+						}
+					}
+					else {
+						System.out.println("水晶不夠");
+					}
+				}
+				else {
+					if(player1.crystal>=2) {
+						player1.crystal-=2;
+						player2.health-=2;
+					}
+					else {
+						System.out.println("水晶不夠");
+					}
+				}
+				player1.abilityflag=1;
+			}
+			else {
+				System.out.println("本回合已使用過");
+			}
+		}
+		else {
+			if(player2.abilityflag==0) {
+				if(player2.career==0) {
+					System.out.println("你沒有技能!!");
+				}
+				else if(player2.career==1) {
+					if(player2.crystal>=2) {
+						if(victim.equals("enemy")) {
+							player2.crystal-=2;
+							player1.health-=1;
+						}
+						else {
+							player2.crystal-=2;
+							switch(player1areahint[Integer.parseInt(victim.substring(1))-1]) {
+								case "A1":
+									((A1)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "A2":
+									((A2)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "B1":
+									((B1)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "B2":
+									((B2)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "C1":
+									((C1)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "C2":
+									((C2)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "D1":
+									((D1)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "D2":
+									((D2)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								case "E1":
+									((E1)player1area[Integer.parseInt(victim.substring(1))-1]).health-=1;
+									break;
+								default:
+									break;
+							}
+						}
+					}
+					else {
+						System.out.println("水晶不夠");
+					}
+				}
+				else if(player2.career==2) {
+					if(player2.crystal>=2) {
+						if(victim.equals("myself")) {
+							player2.crystal-=2;
+							player2.health+=2;
+							if(player2.health>=20) {
+								player2.health=20;
+							}
+						}
+						else {
+							player2.crystal-=2;
+							switch(player2areahint[Integer.parseInt(victim.substring(1))-1]) {
+								case "A1":
+									((A1)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((A1)player2area[Integer.parseInt(victim.substring(1))-1]).health>=8) {
+										((A1)player2area[Integer.parseInt(victim.substring(1))-1]).health=8;
+									}
+									break;
+								case "A2":
+									((A2)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((A2)player2area[Integer.parseInt(victim.substring(1))-1]).health>=2) {
+										((A2)player2area[Integer.parseInt(victim.substring(1))-1]).health=2;
+									}
+									break;
+								case "B1":
+									((B1)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((B1)player2area[Integer.parseInt(victim.substring(1))-1]).health>=7) {
+										((B1)player2area[Integer.parseInt(victim.substring(1))-1]).health=7;
+									}
+									break;
+								case "B2":
+									((B2)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((B2)player2area[Integer.parseInt(victim.substring(1))-1]).health>=4) {
+										((B2)player2area[Integer.parseInt(victim.substring(1))-1]).health=4;
+									}
+									break;
+								case "C1":
+									((C1)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((C1)player2area[Integer.parseInt(victim.substring(1))-1]).health>=7) {
+										((C1)player2area[Integer.parseInt(victim.substring(1))-1]).health=7;
+									}
+									break;
+								case "C2":
+									((C2)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((C2)player2area[Integer.parseInt(victim.substring(1))-1]).health>=1) {
+										((C2)player2area[Integer.parseInt(victim.substring(1))-1]).health=1;
+									}
+									break;
+								case "D1":
+									((D1)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((D1)player2area[Integer.parseInt(victim.substring(1))-1]).health>=8) {
+										((D1)player2area[Integer.parseInt(victim.substring(1))-1]).health=8;
+									}
+									break;
+								case "D2":
+									((D2)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((D2)player2area[Integer.parseInt(victim.substring(1))-1]).health>=4) {
+										((D2)player2area[Integer.parseInt(victim.substring(1))-1]).health=4;
+									}
+									break;
+								case "E1":
+									((E1)player2area[Integer.parseInt(victim.substring(1))-1]).health+=2;
+									if(((E1)player2area[Integer.parseInt(victim.substring(1))-1]).health>=4) {
+										((E1)player2area[Integer.parseInt(victim.substring(1))-1]).health=4;
+									}
+									break;
+								default:
+									break;
+							}
+						}
+					}
+					else {
+						System.out.println("水晶不夠");
+					}
+				}
+				else {
+					if(player2.crystal>=2) {
+						player2.crystal-=2;
+						player1.health-=2;
+					}
+					else {
+						System.out.println("水晶不夠");
+					}
+				}
+				player2.abilityflag=1;
+			}
+			else {
+				System.out.println("本回合已使用過");
 			}
 		}
 	}
@@ -1693,6 +1982,7 @@ public class hw4 {
 						player1areahint[place-1]="A1";
 						player1.crystal-=8;
 						player1.cards.remove("A1");
+						((A1)player1area[place-1]).ability(1, place-1, player1area, player2area, player1areahint, player2areahint);
 					}
 						break;
 				case "A2":
@@ -1707,6 +1997,7 @@ public class hw4 {
 						player1areahint[place-1]="A2";
 						player1.crystal-=1;
 						player1.cards.remove("A2");
+						((A2)player1area[place-1]).ability(1, place-1, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 
@@ -1722,6 +2013,7 @@ public class hw4 {
 						player1areahint[place-1]="B1";
 						player1.crystal-=7;
 						player1.cards.remove("B1");
+						((B1)player1area[place-1]).ability(1, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 				case "B2":
@@ -1736,6 +2028,7 @@ public class hw4 {
 						player1areahint[place-1]="B2";
 						player1.crystal-=5;
 						player1.cards.remove("B2");
+						((B2)player1area[place-1]).ability(1, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 				case "C1":
@@ -1750,6 +2043,32 @@ public class hw4 {
 						player1areahint[place-1]="C1";
 						player1.crystal-=6;
 						player1.cards.remove("C1");
+						((C1)player1area[place-1]).ability(1, place-1, player1area, player2area, player1areahint, player2areahint);
+						player1.health+=1;
+						switch(player1.career) {
+							case 0:
+								if(player1.health>=40) {
+									player1.health=40;
+								}
+								break;
+							case 1:
+								if(player1.health>=20) {
+									player1.health=20;
+								}
+								break;
+							case 2:
+								if(player1.health>=20) {
+									player1.health=20;
+								}
+								break;
+							case 3:
+								if(player1.health>=16) {
+									player1.health=16;
+								}
+								break;
+							default:
+								break;
+						}
 					}
 					break;
 				case "C2":
@@ -1764,6 +2083,32 @@ public class hw4 {
 						player1areahint[place-1]="C2";
 						player1.crystal-=4;
 						player1.cards.remove("C2");
+						((C2)player1area[place-1]).ability(1, place-1, player1area, player2area, player1areahint, player2areahint);
+						player1.health+=1;
+						switch(player1.career) {
+							case 0:
+								if(player1.health>=40) {
+									player1.health=40;
+								}
+								break;
+							case 1:
+								if(player1.health>=20) {
+									player1.health=20;
+								}
+								break;
+							case 2:
+								if(player1.health>=20) {
+									player1.health=20;
+								}
+								break;
+							case 3:
+								if(player1.health>=16) {
+									player1.health=16;
+								}
+								break;
+							default:
+								break;
+						}
 					}
 					break;
 				case "D1":
@@ -1778,6 +2123,7 @@ public class hw4 {
 						player1areahint[place-1]="D1";
 						player1.crystal-=9;
 						player1.cards.remove("D1");
+						((D1)player1area[place-1]).ability(1, player1, player2);
 					}
 					break;
 				case "D2":
@@ -1792,6 +2138,7 @@ public class hw4 {
 						player1areahint[place-1]="D2";
 						player1.crystal-=3;
 						player1.cards.remove("D2");
+						((D2)player1area[place-1]).ability(1, player1, player2);
 					}
 					break;
 				case "E1":
@@ -1806,6 +2153,7 @@ public class hw4 {
 						player1areahint[place-1]="E1";
 						player1.crystal-=2;
 						player1.cards.remove("E1");
+						((E1)player1area[place-1]).ability(1, place-1, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 				default:
@@ -1826,6 +2174,7 @@ public class hw4 {
 						player2areahint[place-1]="A1";
 						player2.crystal-=8;
 						player2.cards.remove("A1");
+						((A1)player2area[place-1]).ability(2, place-1, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 				case "A2":
@@ -1840,6 +2189,7 @@ public class hw4 {
 						player2areahint[place-1]="A2";
 						player2.crystal-=1;
 						player2.cards.remove("A2");
+						((A2)player2area[place-1]).ability(2, place-1, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 				case "B1":
@@ -1854,6 +2204,7 @@ public class hw4 {
 						player2areahint[place-1]="B1";
 						player2.crystal-=7;
 						player2.cards.remove("B1");
+						((B1)player2area[place-1]).ability(2, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 				case "B2":
@@ -1868,6 +2219,7 @@ public class hw4 {
 						player2areahint[place-1]="B2";
 						player2.crystal-=5;
 						player2.cards.remove("B2");
+						((B2)player2area[place-1]).ability(2, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 				case "C1":
@@ -1882,6 +2234,32 @@ public class hw4 {
 						player2areahint[place-1]="C1";
 						player2.crystal-=6;
 						player2.cards.remove("C1");
+						((C1)player2area[place-1]).ability(2, place-1, player1area, player2area, player1areahint, player2areahint);
+						player2.health+=1;
+						switch(player2.career) {
+							case 0:
+								if(player2.health>=40) {
+									player2.health=40;
+								}
+								break;
+							case 1:
+								if(player2.health>=20) {
+									player2.health=20;
+								}
+								break;
+							case 2:
+								if(player2.health>=20) {
+									player2.health=20;
+								}
+								break;
+							case 3:
+								if(player2.health>=16) {
+									player2.health=16;
+								}
+								break;
+							default:
+								break;
+						}
 					}
 					break;
 				case "C2":
@@ -1896,6 +2274,32 @@ public class hw4 {
 						player2areahint[place-1]="C2";
 						player2.crystal-=4;
 						player2.cards.remove("C2");
+						((C2)player2area[place-1]).ability(2, place-1, player1area, player2area, player1areahint, player2areahint);
+						player2.health+=1;
+						switch(player2.career) {
+							case 0:
+								if(player2.health>=40) {
+									player2.health=40;
+								}
+								break;
+							case 1:
+								if(player2.health>=20) {
+									player2.health=20;
+								}
+								break;
+							case 2:
+								if(player2.health>=20) {
+									player2.health=20;
+								}
+								break;
+							case 3:
+								if(player2.health>=16) {
+									player2.health=16;
+								}
+								break;
+							default:
+								break;
+						}
 					}
 					break;
 				case "D1":
@@ -1910,6 +2314,7 @@ public class hw4 {
 						player2areahint[place-1]="D1";
 						player2.crystal-=9;
 						player2.cards.remove("D1");
+						((D1)player2area[place-1]).ability(2, player1, player2);
 					}
 					break;
 				case "D2":
@@ -1924,6 +2329,7 @@ public class hw4 {
 						player2areahint[place-1]="D2";
 						player2.crystal-=3;
 						player2.cards.remove("D2");
+						((D2)player2area[place-1]).ability(2, player1, player2);
 					}
 					break;
 				case "E1":
@@ -1938,6 +2344,7 @@ public class hw4 {
 						player2areahint[place-1]="E1";
 						player2.crystal-=2;
 						player2.cards.remove("E1");
+						((E1)player2area[place-1]).ability(2, place-1, player1area, player2area, player1areahint, player2areahint);
 					}
 					break;
 				default:
