@@ -100,6 +100,9 @@ public class hw5 {
 						roundflag=1;
 						break;
 					}
+					else if(instruction[0].equals("cast")) {
+						playerability(2,instruction[2]);
+					}
 					else if(instruction[0].equals("select")) {
 						createcardobject(2,instruction[1],Integer.parseInt(instruction[2].substring(1)),instruction[3]);
 					}
